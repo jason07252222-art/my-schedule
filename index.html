@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>♡ 我的精緻時刻表 ♡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Serif+TC:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --pink-soft: #ffd1dc;
+    --pink-light: #ffb6c1;
+    --pink-mid: #ff85b3;
+    --pink-deep: #ff6b9d;
+    --pink-rose: #ff4081;
+    --pink-wine: #c2185b;
+    --plum: #5c2942;
+    --cream: #fff5f8;
+    --gold: #d4af37;
+    --gold-light: #ffd966;
+  }
+  
+  html, body { overflow-x: hidden; }
+  
+  body {
+    min-height: 100vh;
+    background: 
+      radial-gradient(ellipse 80% 60% at 20% 0%, #fff0f5, transparent),
+      radial-gradient(ellipse 70% 50% at 80% 10%, #ffe4ef, transparent),
+      radial-gradient(ellipse 90% 60% at 50% 100%, #ffd6e8, transparent),
+      linear-gradient(180deg, #fff5f8 0%, #ffe0ec 60%, #ffd1dc 100%);
+    background-attachment: fixed;
+    font-family: 'Noto Serif TC', serif;
+    color: var(--plum);
+    position: relative;
+    padding: 50px 24px 60px;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; height: 6px;
+    background: 
+      radial-gradient(circle at 10px 0, var(--pink-deep) 4px, transparent 5px) repeat-x,
+      linear-gradient(var(--pink-light), var(--pink-light));
+    background-size: 20px 6px, 100% 100%;
+    z-index: 100;
+    opacity: 0.7;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: 0; left: 0; right: 0; height: 6px;
+    background: 
+      radial-gradient(circle at 10px 6px, var(--pink-deep) 4px, transparent 5px) repeat-x,
+      linear-gradient(var(--pink-light), var(--pink-light));
+    background-size: 20px 6px, 100% 100%;
+    z-index: 100;
+    opacity: 0.7;
+  }
+  
+  .floating-decoration {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    animation: float-up linear infinite;
+    user-select: none;
+    will-change: transform;
+  }
+  
+  @keyframes float-up {
+    0% { transform: translateY(110vh) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    50% { transform: translateY(50vh) translateX(40px) rotate(180deg); }
+    90% { opacity: 1; }
+    100% { transform: translateY(-15vh) translateX(-30px) rotate(360deg); opacity: 0; }
+  }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+  }
+  
+  .ornament {
+    color: var(--pink-deep);
+    font-size: 0.95rem;
+    letter-spacing: 0.8em;
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+  
+  .kitty-mascot {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 25px;
+    position: relative;
+    animation: kitty-bounce 3.5s cubic-bezier(.5,0,.5,1) infinite;
+    filter: drop-shadow(0 14px 28px rgba(255, 105, 157, 0.35));
+  }
+  
+  @keyframes kitty-bounce {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-14px) rotate(3deg); }
+  }
+  
+  .kitty-mascot svg { width: 100%; height: 100%; }
+  .kitty-mascot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    box-shadow: 
+      inset 0 2px 8px rgba(255, 105, 157, 0.15),
+      0 0 0 3px rgba(255, 255, 255, 0.7),
+      0 0 0 4px rgba(255, 105, 157, 0.3);
+  }
+  
+  .sparkle {
+    position: absolute;
+    color: var(--pink-rose);
+    font-size: 1.4rem;
+    animation: sparkle 2s ease-in-out infinite;
+  }
+  .sparkle:nth-child(1) { top: 5%; right: 15%; animation-delay: 0s; }
+  .sparkle:nth-child(2) { top: 25%; left: 5%; animation-delay: 0.5s; font-size: 1rem; }
+  .sparkle:nth-child(3) { bottom: 20%; right: 5%; animation-delay: 1s; font-size: 1.1rem; }
+  .sparkle:nth-child(4) { top: 50%; left: -5%; animation-delay: 1.5s; font-size: 0.9rem; }
+  
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  
+  h1 {
+    font-family: 'Playfair Display', 'Noto Serif TC', serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    color: var(--pink-wine);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 12px rgba(255, 105, 157, 0.25);
+  }
+  
+  h1 .flourish {
+    color: var(--pink-deep);
+    font-style: italic;
+    font-weight: 400;
+    margin: 0 12px;
+  }
+  
+  .subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--pink-deep);
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  
+  .clock-display {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    border-radius: 100px;
+    padding: 22px 50px;
+    box-shadow: 
+      0 20px 50px rgba(255, 105, 157, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 0 0 1px rgba(255, 105, 157, 0.1);
+    position: relative;
+  }
+  
+  .clock-display::before, .clock-display::after {
+    content: '✿';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--pink-deep);
+    font-size: 1.4rem;
+    opacity: 0.6;
+  }
+  .clock-display::before { left: 18px; }
+  .clock-display::after { right: 18px; }
+  
+  .current-time {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 4rem);
+    font-weight: 700;
+    color: var(--plum);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  
+  .current-time .seconds {
+    color: var(--pink-deep);
+    font-size: 0.55em;
+    font-style: italic;
+    font-weight: 400;
+    margin-left: 0.3em;
+  }
+  
+  .current-date {
+    font-size: 0.85rem;
+    color: var(--pink-deep);
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+  
+  /* Main grid */
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 30px;
+  }
+  
+  @media (max-width: 768px) {
+    main { grid-template-columns: 1fr; gap: 20px; }
+    body { padding: 40px 16px 50px; }
+    .kitty-mascot { width: 140px; height: 140px; }
+  }
+  
+  /* Cards */
+  .card {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    border-radius: 28px;
+    padding: 38px 32px;
+    box-shadow: 
+      0 22px 55px rgba(255, 105, 157, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(255, 182, 193, 0.5), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 
+      0 32px 70px rgba(255, 105, 157, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+  
+  .card.now {
+    background: rgba(255, 240, 245, 0.7);
+    border: 1.5px solid rgba(255, 182, 193, 0.7);
+  }
+  
+  .card.now::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--pink-deep), var(--pink-light), var(--pink-rose), var(--pink-deep));
+    background-size: 200% 100%;
+    animation: shimmer 4s linear infinite;
+  }
+  
+  @keyframes shimmer {
+    from { background-position: 0% 0; }
+    to { background-position: 200% 0; }
+  }
+  
+  .card-decoration {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    font-size: 2.2rem;
+    color: var(--pink-deep);
+    opacity: 0.25;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+  
+  .card-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--pink-deep);
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--pink-wine);
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed rgba(255, 105, 157, 0.35);
+    position: relative;
+  }
+  
+  .card-title::after {
+    content: '❀';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 250, 252, 0.95);
+    padding: 0 12px;
+    color: var(--pink-deep);
+    font-size: 0.9rem;
+  }
+  
+  .card.now .card-title::after { background: rgba(255, 240, 245, 0.95); }
+  
+  .activity {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    font-weight: 500;
+    color: var(--plum);
+    margin: 18px 0 14px;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  
+  .activity-emoji {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+  
+  .time-range {
+    display: inline-block;
+    background: rgba(255, 105, 157, 0.12);
+    color: var(--pink-wine);
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 105, 157, 0.2);
+  }
+  
+  /* Progress */
+  .progress-container { margin-top: 24px; }
+  
+  .progress-track {
+    height: 12px;
+    background: rgba(255, 182, 193, 0.3);
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(255, 105, 157, 0.15);
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pink-light), var(--pink-deep), var(--pink-rose));
+    border-radius: 100px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 0 18px rgba(255, 105, 157, 0.6);
+  }
+  
+  .progress-fill::after {
+    content: '♡';
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 0.7rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+  
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--pink-wine);
+  }
+  
+  .progress-info span:first-child {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+  }
+  
+  /* Countdown */
+  .countdown {
+    margin-top: 22px;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.25), rgba(255, 105, 157, 0.1));
+    border-radius: 18px;
+    border: 1px dashed rgba(255, 105, 157, 0.4);
+    text-align: center;
+  }
+  
+  .countdown-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
+    color: var(--pink-deep);
+    margin-bottom: 4px;
+  }
+  
+  .countdown-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--pink-wine);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  
+  /* ================================
+     WEEKLY STATS CARD
+     ================================ */
+  .stats-card { margin-bottom: 30px; }
+  
+  .week-banner {
+    display: none;
+    background: linear-gradient(135deg, #fff5e1, #ffe9c7);
+    border: 1.5px solid #d4af37;
+    border-radius: 20px;
+    padding: 18px 22px;
+    margin-bottom: 22px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
+    position: relative;
+  }
+  
+  .week-banner.show { display: block; animation: banner-glow 0.8s ease-out; }
+  
+  @keyframes banner-glow {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .week-banner::before {
+    content: '✦';
+    position: absolute;
+    top: 8px; left: 16px;
+    color: #d4af37;
+  }
+  .week-banner::after {
+    content: '✦';
+    position: absolute;
+    top: 8px; right: 16px;
+    color: #d4af37;
+  }
+  
+  .banner-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
+    color: #b8860b;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  
+  .banner-message {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--pink-wine);
+    font-weight: 700;
+  }
+  
+  .week-overall {
+    text-align: center;
+    margin-bottom: 26px;
+    padding: 16px;
+    background: rgba(255, 240, 245, 0.5);
+    border-radius: 18px;
+  }
+  
+  .overall-percent {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--pink-wine);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  
+  .overall-percent .percent-sign {
+    font-size: 0.5em;
+    color: var(--pink-deep);
+    font-style: italic;
+  }
+  
+  .overall-label {
+    font-size: 0.85rem;
+    color: var(--pink-deep);
+    margin-top: 4px;
+    letter-spacing: 0.3em;
+  }
+  
+  .overall-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--plum);
+    margin-top: 8px;
+    font-weight: 500;
+  }
+  
+  .subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+  
+  @media (max-width: 600px) {
+    .subjects-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  }
+  
+  .subject-ring {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 22px;
+    padding: 16px 10px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.4s ease;
+  }
+  
+  .subject-ring:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(255, 105, 157, 0.2);
+  }
+  
+  .ring-svg {
+    width: 100%;
+    max-width: 110px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .ring-bg {
+    fill: none;
+    stroke: rgba(255, 182, 193, 0.3);
+    stroke-width: 8;
+  }
+  
+  .ring-fill {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dasharray 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .subject-ring[data-subject="國"] .ring-fill { stroke: #d6336c; }
+  .subject-ring[data-subject="英"] .ring-fill { stroke: #ff6b9d; }
+  .subject-ring[data-subject="生"] .ring-fill { stroke: #ff8fab; }
+  .subject-ring[data-subject="化"] .ring-fill { stroke: #e91e63; }
+  
+  .ring-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    fill: var(--pink-wine);
+    text-anchor: middle;
+    dominant-baseline: middle;
+  }
+  
+  .ring-percent {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    fill: var(--pink-deep);
+    text-anchor: middle;
+  }
+  
+  .subject-name {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    color: var(--plum);
+    font-size: 0.95rem;
+    margin-top: 8px;
+    letter-spacing: 0.1em;
+  }
+  
+  .subject-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    color: var(--pink-wine);
+    margin-top: 2px;
+  }
+  
+  .reset-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 26px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px dashed rgba(255, 105, 157, 0.5);
+    border-radius: 100px;
+    color: var(--pink-wine);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.1em;
+  }
+  
+  .reset-btn:hover {
+    background: rgba(255, 105, 157, 0.15);
+    border-style: solid;
+    transform: scale(1.03);
+  }
+  
+  /* ================================
+     SCHEDULE LIST
+     ================================ */
+  .schedule-card { margin-top: 30px; }
+  
+  .schedule-list {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+  
+  .schedule-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 3px solid transparent;
+    border-right: 1px solid rgba(255, 255, 255, 0.6);
+    gap: 8px;
+  }
+  
+  .schedule-item:hover {
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateX(4px);
+  }
+  
+  .schedule-item.past { opacity: 0.4; }
+  .schedule-item.past .schedule-time { text-decoration: line-through; }
+  
+  .schedule-item.current {
+    background: linear-gradient(90deg, rgba(255, 182, 193, 0.5), rgba(255, 240, 245, 0.5));
+    border-left: 3px solid var(--pink-deep);
+    box-shadow: 0 6px 20px rgba(255, 105, 157, 0.2);
+    transform: translateX(8px) scale(1.01);
+  }
+  
+  .schedule-item.current::before {
+    content: '♡';
+    color: var(--pink-deep);
+    margin-right: 4px;
+    font-size: 1.1rem;
+    animation: heartbeat 1.2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+  
+  .schedule-time {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--pink-wine);
+    width: 145px;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+  }
+  
+  .schedule-emoji { font-size: 1.1rem; margin-right: 8px; }
+  
+  .schedule-activity {
+    flex: 1;
+    color: var(--plum);
+    font-size: 0.98rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  
+  .subject-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: rgba(255, 105, 157, 0.15);
+    color: var(--pink-wine);
+    border: 1px solid rgba(255, 105, 157, 0.3);
+    letter-spacing: 0.05em;
+    margin-left: 4px;
+  }
+  
+  .check-btn {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--pink-deep);
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 105, 157, 0.3);
+    padding: 0;
+  }
+  
+  .check-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 240, 245, 0.9);
+  }
+  
+  .check-btn.checked {
+    background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 105, 157, 0.4);
+    animation: pop 0.4s cubic-bezier(0.5, 1.6, 0.5, 1);
+  }
+  
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+  
+  /* Day tabs */
+  .day-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .day-tab {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 105, 157, 0.2);
+    border-radius: 100px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.9rem;
+    color: var(--plum);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+  }
+  
+  .day-tab:hover { background: rgba(255, 182, 193, 0.4); transform: translateY(-2px); }
+  
+  .day-tab.active {
+    background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 6px 16px rgba(255, 105, 157, 0.4);
+  }
+  
+  .day-tab.today { border-color: var(--pink-deep); }
+  
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    color: var(--pink-deep);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    opacity: 0.85;
+  }
+  
+  footer .ornament-bottom {
+    margin-bottom: 8px;
+    color: var(--pink-light);
+    letter-spacing: 0.5em;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="ornament">⊹ ࣪ ˖ ✿ ˖ ࣪ ⊹</div>
+    
+    <div class="kitty-mascot">
+      <span class="sparkle">✦</span>
+      <span class="sparkle">✧</span>
+      <span class="sparkle">✦</span>
+      <span class="sparkle">✧</span>
+      <img src="kitty.png" alt="Kitty">
+    </div>
+    
+    <h1>~我的時刻表~<span class="flourish">
+    <div class="subtitle">~ Mon Petit Calendrier ~</div>
+    
+    <div class="clock-display">
+      <div class="current-time" id="clock">00:00<span class="seconds" id="seconds">:00</span></div>
+      <div class="current-date" id="date">Loading</div>
+    </div>
+  </header>
+  
+  <main>
+    <div class="card now">
+      <div class="card-decoration">N°1</div>
+      <div class="card-label">Right now</div>
+      <div class="card-title">現 在 進 行</div>
+      <div class="activity" id="now-activity">
+        <span class="activity-emoji" id="now-emoji">✨</span>
+        <span id="now-text">載入中...</span>
+      </div>
+      <div class="time-range" id="now-time">--:-- ─ --:--</div>
+      <div class="progress-container">
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+        <div class="progress-info">
+          <span id="progress-percent">0%</span>
+          <span id="progress-remaining">剩 -- 分</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-decoration">N°2</div>
+      <div class="card-label">Up next</div>
+      <div class="card-title">下 一 件 事</div>
+      <div class="activity" id="next-activity">
+        <span class="activity-emoji" id="next-emoji">🌸</span>
+        <span id="next-text">載入中...</span>
+      </div>
+      <div class="time-range" id="next-time">--:-- ─ --:--</div>
+      <div class="countdown">
+        <div class="countdown-label">Starts in</div>
+        <div class="countdown-value" id="next-countdown">-- 分鐘</div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- WEEKLY STATS CARD -->
+  <div class="card stats-card">
+    <div class="card-decoration">★</div>
+    <div class="card-label">Weekly progress</div>
+    <div class="card-title">本 週 學 科 完 成</div>
+    
+    <div class="week-banner" id="week-banner">
+      <div class="banner-label">~ Le Weekend ~</div>
+      <div class="banner-message" id="banner-message">週末總結</div>
+    </div>
+    
+    <div class="week-overall">
+      <div class="overall-percent"><span id="overall-num">0</span><span class="percent-sign">%</span></div>
+      <div class="overall-label">本 週 完 成 度</div>
+      <div class="overall-count" id="overall-count">已完成 0 / 0 堂</div>
+    </div>
+    
+    <div class="subjects-grid" id="subjects-grid"></div>
+    
+    <button class="reset-btn" id="reset-btn">✿ 重設本週紀錄 ✿</button>
+  </div>
+  
+  <div class="card schedule-card">
+    <div class="card-label">Today's Plan</div>
+    <div class="card-title" id="day-title">今 日 行 程</div>
+    <div class="day-tabs" id="day-tabs"></div>
+    <ul class="schedule-list" id="schedule-list"></ul>
+  </div>
+  
+  <footer>
+    <div class="ornament-bottom">⊹ ࣪ ˖ ✿ ˖ ࣪ ⊹</div>
+    Stay sparkly, lovely ♡
+  </footer>
+</div>
+
+<script>
+  // ============================================
+  // SCHEDULE DATA
+  // subjects: 國/英/生/化 - tagged sessions count for weekly stats
+  // ============================================
+  const schedule = {
+    0: [
+      { start: "00:00", end: "09:00", activity: "睡覺", emoji: "🌙" },
+      { start: "09:00", end: "23:00", activity: "自由時間 / 休息", emoji: "🌷" },
+      { start: "23:00", end: "24:00", activity: "睡覺", emoji: "🌙" },
+    ],
+    1: [
+      { start: "00:00", end: "07:00", activity: "睡覺", emoji: "🌙" },
+      { start: "07:00", end: "08:10", activity: "起床準備", emoji: "☀️" },
+      { start: "08:10", end: "10:00", activity: "多文教 + 生物", emoji: "🧬", subjects: ["生"] },
+      { start: "10:00", end: "10:10", activity: "下課休息", emoji: "☕" },
+      { start: "10:10", end: "12:00", activity: "校行 + 生物", emoji: "🧬", subjects: ["生"] },
+      { start: "12:00", end: "13:30", activity: "午餐 + 午睡", emoji: "🍱" },
+      { start: "13:30", end: "15:20", activity: "中教 + 英文", emoji: "📖", subjects: ["英"] },
+      { start: "15:20", end: "15:30", activity: "下課休息", emoji: "☕" },
+      { start: "15:30", end: "17:20", activity: "教研", emoji: "🔬" },
+      { start: "17:20", end: "18:20", activity: "晚餐時間", emoji: "🍽️" },
+      { start: "18:20", end: "21:00", activity: "化學", emoji: "🧪", subjects: ["化"] },
+      { start: "21:00", end: "23:00", activity: "洗澡準備睡覺", emoji: "🛁" },
+      { start: "23:00", end: "24:00", activity: "睡覺", emoji: "🌙" },
+    ],
+    2: [
+      { start: "00:00", end: "07:00", activity: "睡覺", emoji: "🌙" },
+      { start: "07:00", end: "08:10", activity: "起床準備", emoji: "☀️" },
+      { start: "08:10", end: "10:00", activity: "人關 + 化學", emoji: "🧪", subjects: ["化"] },
+      { start: "10:00", end: "10:10", activity: "下課休息", emoji: "☕" },
+      { start: "10:10", end: "12:00", activity: "輔教", emoji: "📚" },
+      { start: "12:00", end: "12:30", activity: "短暫休息", emoji: "☕" },
+      { start: "12:30", end: "13:20", activity: "專題", emoji: "💡" },
+      { start: "13:20", end: "13:30", activity: "下課休息", emoji: "☕" },
+      { start: "13:30", end: "14:20", activity: "午餐 + 午睡", emoji: "😴" },
+      { start: "14:20", end: "14:30", activity: "短暫休息", emoji: "☕" },
+      { start: "14:30", end: "17:20", activity: "團輔", emoji: "👥" },
+      { start: "17:20", end: "18:20", activity: "晚餐時間", emoji: "🍽️" },
+      { start: "18:20", end: "21:00", activity: "諮商", emoji: "💬" },
+      { start: "21:00", end: "23:00", activity: "洗澡準備睡覺", emoji: "🛁" },
+      { start: "23:00", end: "24:00", activity: "睡覺", emoji: "🌙" },
+    ],
+    3: [
+      { start: "00:00", end: "07:00", activity: "睡覺", emoji: "🌙" },
+      { start: "07:00", end: "08:10", activity: "起床準備", emoji: "☀️" },
+      { start: "08:10", end: "10:00", activity: "生物", emoji: "🧬", subjects: ["生"] },
+      { start: "10:00", end: "10:10", activity: "下課休息", emoji: "☕" },
+      { start: "10:10", end: "12:00", activity: "綜活 + 化學", emoji: "🧪", subjects: ["化"] },
+      { start: "12:00", end: "13:30", activity: "午餐 + 午睡", emoji: "🍱" },
+      { start: "13:30", end: "15:20", activity: "學評 + 英文", emoji: "📖", subjects: ["英"] },
+      { start: "15:20", end: "15:30", activity: "下課休息", emoji: "☕" },
+      { start: "15:30", end: "17:20", activity: "生命", emoji: "🌱" },
+      { start: "17:20", end: "18:20", activity: "晚餐時間", emoji: "🍽️" },
+      { start: "18:20", end: "21:00", activity: "補英文", emoji: "📖", subjects: ["英"] },
+      { start: "21:00", end: "23:00", activity: "洗澡準備睡覺", emoji: "🛁" },
+      { start: "23:00", end: "24:00", activity: "睡覺", emoji: "🌙" },
+    ],
+    4: [
+      { start: "00:00", end: "07:00", activity: "睡覺", emoji: "🌙" },
+      { start: "07:00", end: "08:10", activity: "起床準備", emoji: "☀️" },
+      { start: "08:10", end: "09:00", activity: "英文", emoji: "📖", subjects: ["英"] },
+      { start: "09:00", end: "09:10", activity: "下課休息", emoji: "☕" },
+      { start: "09:10", end: "12:00", activity: "教社 + 國文", emoji: "📜", subjects: ["國"] },
+      { start: "12:00", end: "13:30", activity: "午餐 + 午睡", emoji: "🍱" },
+      { start: "13:30", end: "15:20", activity: "生物", emoji: "🧬", subjects: ["生"] },
+      { start: "15:20", end: "15:30", activity: "下課休息", emoji: "☕" },
+      { start: "15:30", end: "17:20", activity: "體育", emoji: "🏃‍♀️" },
+      { start: "17:20", end: "18:20", activity: "晚餐時間", emoji: "🍽️" },
+      { start: "18:20", end: "22:50", activity: "家教", emoji: "👩‍🏫" },
+      { start: "22:50", end: "24:00", activity: "洗澡準備睡覺", emoji: "🛁" },
+    ],
+    5: [
+      { start: "00:00", end: "07:30", activity: "睡覺", emoji: "🌙" },
+      { start: "07:30", end: "08:10", activity: "起床準備", emoji: "☀️" },
+      { start: "08:10", end: "10:00", activity: "班經 + 化學", emoji: "🧪", subjects: ["化"] },
+      { start: "10:00", end: "10:10", activity: "下課休息", emoji: "☕" },
+      { start: "10:10", end: "12:00", activity: "音樂", emoji: "🎵" },
+      { start: "12:00", end: "12:30", activity: "短暫休息", emoji: "☕" },
+      { start: "12:30", end: "13:20", activity: "專題", emoji: "💡" },
+      { start: "13:20", end: "13:30", activity: "下課休息", emoji: "☕" },
+      { start: "13:30", end: "15:20", activity: "午餐 + 午睡 + 英文", emoji: "😴", subjects: ["英"] },
+      { start: "15:20", end: "15:30", activity: "下課休息", emoji: "☕" },
+      { start: "15:30", end: "17:20", activity: "彈性課程", emoji: "🌸" },
+      { start: "17:20", end: "18:20", activity: "晚餐時間", emoji: "🍽️" },
+      { start: "18:20", end: "21:00", activity: "生物", emoji: "🧬", subjects: ["生"] },
+      { start: "21:00", end: "23:00", activity: "洗澡準備睡覺", emoji: "🛁" },
+      { start: "23:00", end: "24:00", activity: "睡覺", emoji: "🌙" },
+    ],
+    6: [
+      { start: "00:00", end: "08:00", activity: "睡覺", emoji: "🌙" },
+      { start: "08:00", end: "08:10", activity: "起床準備", emoji: "☀️" },
+      { start: "08:10", end: "10:00", activity: "英文", emoji: "📖", subjects: ["英"] },
+      { start: "10:00", end: "10:10", activity: "下課休息", emoji: "☕" },
+      { start: "10:10", end: "12:00", activity: "家教", emoji: "👩‍🏫" },
+      { start: "12:00", end: "12:10", activity: "短暫休息", emoji: "☕" },
+      { start: "12:10", end: "14:00", activity: "通勤 + 午餐", emoji: "🚗" },
+      { start: "14:00", end: "18:00", activity: "顧店", emoji: "🏪" },
+      { start: "18:00", end: "18:20", activity: "晚餐時間", emoji: "🍽️" },
+      { start: "18:20", end: "19:20", activity: "生物", emoji: "🧬", subjects: ["生"] },
+      { start: "19:20", end: "20:20", activity: "國文", emoji: "📜", subjects: ["國"] },
+      { start: "20:20", end: "23:00", activity: "洗澡準備睡覺", emoji: "🛁" },
+      { start: "23:00", end: "24:00", activity: "睡覺", emoji: "🌙" },
+    ],
+  };
+  
+  const dayNamesZh = ['日', '一', '二', '三', '四', '五', '六'];
+  const dayNamesFull = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+  const monthsEn = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  const SUBJECTS = ['國', '英', '生', '化'];
+  const SUBJECT_NAMES = { '國': '國文', '英': '英文', '生': '生物', '化': '化學' };
+  
+  let viewingDay = null;
+  
+  function timeToMin(t) {
+    const [h, m] = t.split(':').map(Number);
+    return h * 60 + m;
+  }
+  
+  function getEndMin(item) {
+    if (item.end === "24:00") return 1440;
+    return timeToMin(item.end);
+  }
+  
+  // ============================================
+  // WEEK KEY (resets every Monday)
+  // ============================================
+  function getWeekKey() {
+    const now = new Date();
+    const day = now.getDay();
+    const diff = day === 0 ? -6 : 1 - day;
+    const monday = new Date(now);
+    monday.setDate(now.getDate() + diff);
+    monday.setHours(0, 0, 0, 0);
+    return `${monday.getFullYear()}-${String(monday.getMonth()+1).padStart(2,'0')}-${String(monday.getDate()).padStart(2,'0')}`;
+  }
+  
+  function getCheckIns() {
+    try {
+      const all = JSON.parse(localStorage.getItem('scheduleCheckIns') || '{}');
+      return all[getWeekKey()] || {};
+    } catch { return {}; }
+  }
+  
+  function saveCheckIns(week) {
+    try {
+      const all = JSON.parse(localStorage.getItem('scheduleCheckIns') || '{}');
+      all[getWeekKey()] = week;
+      // Keep only last 4 weeks
+      const keys = Object.keys(all).sort();
+      while (keys.length > 4) delete all[keys.shift()];
+      localStorage.setItem('scheduleCheckIns', JSON.stringify(all));
+    } catch {}
+  }
+  
+  function toggleCheck(day, start) {
+    const week = getCheckIns();
+    const id = `d${day}-${start}`;
+    week[id] = !week[id];
+    saveCheckIns(week);
+    return week[id];
+  }
+  
+  function isChecked(day, start) {
+    return !!getCheckIns()[`d${day}-${start}`];
+  }
+  
+  function getWeekStats() {
+    const stats = {};
+    SUBJECTS.forEach(s => stats[s] = { done: 0, total: 0 });
+    const week = getCheckIns();
+    
+    for (let day = 1; day <= 6; day++) {
+      const items = schedule[day] || [];
+      items.forEach(item => {
+        if (item.subjects && item.subjects.length) {
+          item.subjects.forEach(s => {
+            if (stats[s]) {
+              stats[s].total++;
+              if (week[`d${day}-${item.start}`]) stats[s].done++;
+            }
+          });
+        }
+      });
+    }
+    
+    let totalDone = 0, totalAll = 0;
+    SUBJECTS.forEach(s => { totalDone += stats[s].done; totalAll += stats[s].total; });
+    return { stats, totalDone, totalAll, percent: totalAll ? Math.round(totalDone / totalAll * 100) : 0 };
+  }
+  
+  // ============================================
+  // CURRENT/NEXT
+  // ============================================
+  function getCurrentInfo() {
+    const now = new Date();
+    const day = now.getDay();
+    const cMin = now.getHours() * 60 + now.getMinutes() + now.getSeconds() / 60;
+    const todaySch = schedule[day] || [];
+    
+    for (let i = 0; i < todaySch.length; i++) {
+      const item = todaySch[i];
+      const s = timeToMin(item.start);
+      const e = getEndMin(item);
+      
+      if (cMin >= s && cMin < e) {
+        let next, nextIsTomorrow = false;
+        if (i + 1 < todaySch.length) {
+          next = todaySch[i + 1];
+        } else {
+          const tmr = (day + 1) % 7;
+          next = (schedule[tmr] && schedule[tmr][0]) || null;
+          nextIsTomorrow = true;
+        }
+        return { current: item, next, nextIsTomorrow, day, currentMin: cMin, startMin: s, endMin: e };
+      }
+    }
+    return null;
+  }
+  
+  function fmtRemaining(min) {
+    min = Math.max(0, Math.ceil(min));
+    if (min >= 60) {
+      const h = Math.floor(min / 60);
+      const m = min % 60;
+      return m > 0 ? `${h} 小時 ${m} 分` : `${h} 小時`;
+    }
+    return `${min} 分鐘`;
+  }
+  
+  // ============================================
+  // RENDER WEEKLY STATS
+  // ============================================
+  function getWeekendMessage(percent) {
+    if (percent >= 100) return '完美！這週超棒 ♡';
+    if (percent >= 80) return '很厲害！繼續保持 ✿';
+    if (percent >= 60) return '不錯～下週再加把勁 ❀';
+    if (percent >= 40) return '辛苦了，下週一起加油 ✦';
+    return '休息也很重要，下週再衝 ♥';
+  }
+  
+  function shouldShowWeekend() {
+    const now = new Date();
+    const day = now.getDay();
+    const cMin = now.getHours() * 60 + now.getMinutes();
+    return (day === 6 && cMin >= 20 * 60 + 20) || day === 0;
+  }
+  
+  function renderStats() {
+    const { stats, totalDone, totalAll, percent } = getWeekStats();
+    
+    document.getElementById('overall-num').textContent = percent;
+    document.getElementById('overall-count').textContent = `已完成 ${totalDone} / ${totalAll} 堂`;
+    
+    const banner = document.getElementById('week-banner');
+    if (shouldShowWeekend()) {
+      banner.classList.add('show');
+      document.getElementById('banner-message').textContent = getWeekendMessage(percent);
+    } else {
+      banner.classList.remove('show');
+    }
+    
+    const grid = document.getElementById('subjects-grid');
+    grid.innerHTML = '';
+    
+    SUBJECTS.forEach(s => {
+      const data = stats[s];
+      const pct = data.total ? Math.round(data.done / data.total * 100) : 0;
+      const circumference = 2 * Math.PI * 42;
+      const dash = (pct / 100) * circumference;
+      
+      const div = document.createElement('div');
+      div.className = 'subject-ring';
+      div.setAttribute('data-subject', s);
+      div.innerHTML = `
+        <svg class="ring-svg" viewBox="0 0 100 100">
+          <circle class="ring-bg" cx="50" cy="50" r="42"/>
+          <circle class="ring-fill" cx="50" cy="50" r="42"
+                  stroke-dasharray="${dash} ${circumference}"/>
+          <text class="ring-text" x="50" y="48">${s}</text>
+          <text class="ring-percent" x="50" y="64">${pct}%</text>
+        </svg>
+        <div class="subject-name">${SUBJECT_NAMES[s]}</div>
+        <div class="subject-count">${data.done} / ${data.total} 堂</div>
+      `;
+      grid.appendChild(div);
+    });
+  }
+  
+  // ============================================
+  // MAIN UPDATE
+  // ============================================
+  function update() {
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    const ss = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').innerHTML = `${hh}:${mm}<span class="seconds">:${ss}</span>`;
+    document.getElementById('date').textContent = 
+      `${monthsEn[now.getMonth()]} ${now.getDate()} · ${dayNamesFull[now.getDay()]}`;
+    
+    const info = getCurrentInfo();
+    
+    if (info) {
+      document.getElementById('now-text').textContent = info.current.activity;
+      document.getElementById('now-emoji').textContent = info.current.emoji;
+      document.getElementById('now-time').textContent = `${info.current.start} ─ ${info.current.end}`;
+      
+      const total = info.endMin - info.startMin;
+      const elapsed = info.currentMin - info.startMin;
+      const pct = Math.min(100, Math.max(0, (elapsed / total) * 100));
+      const remaining = info.endMin - info.currentMin;
+      
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('progress-percent').textContent = pct.toFixed(0) + '% 完成';
+      document.getElementById('progress-remaining').textContent = '剩 ' + fmtRemaining(remaining);
+      
+      if (info.next) {
+        document.getElementById('next-text').textContent = info.next.activity;
+        document.getElementById('next-emoji').textContent = info.next.emoji;
+        const prefix = info.nextIsTomorrow ? '明日 ' : '';
+        document.getElementById('next-time').textContent = `${prefix}${info.next.start} ─ ${info.next.end}`;
+        
+        const nextStart = timeToMin(info.next.start);
+        let mTillNext = info.nextIsTomorrow ? (1440 - info.currentMin) + nextStart : nextStart - info.currentMin;
+        document.getElementById('next-countdown').textContent = fmtRemaining(mTillNext);
+      }
+    } else {
+      document.getElementById('now-text').textContent = '空閒時間 ♡';
+      document.getElementById('now-emoji').textContent = '🌷';
+      document.getElementById('now-time').textContent = '自由時間';
+      document.getElementById('progress-fill').style.width = '0%';
+    }
+    
+    const dayToShow = viewingDay !== null ? viewingDay : now.getDay();
+    renderScheduleList(dayToShow, info);
+    renderStats();
+  }
+  
+  function renderScheduleList(day, info) {
+    const list = document.getElementById('schedule-list');
+    const sch = schedule[day] || [];
+    list.innerHTML = '';
+    
+    const now = new Date();
+    const isToday = day === now.getDay();
+    const cMin = now.getHours() * 60 + now.getMinutes();
+    
+    document.getElementById('day-title').textContent = 
+      isToday ? '今 日 行 程' : `星 期 ${dayNamesZh[day]} 行 程`;
+    
+    sch.forEach(item => {
+      const e = getEndMin(item);
+      const li = document.createElement('li');
+      li.className = 'schedule-item';
+      
+      if (isToday) {
+        if (e <= cMin) li.classList.add('past');
+        if (info && item === info.current) li.classList.add('current');
+      }
+      
+      let subjectHtml = '';
+      if (item.subjects) {
+        subjectHtml = item.subjects.map(s => `<span class="subject-tag">${s}</span>`).join('');
+      }
+      
+      let checkBtn = '';
+      if (item.subjects) {
+        const checked = isChecked(day, item.start);
+        checkBtn = `<button class="check-btn ${checked ? 'checked' : ''}" 
+                     data-day="${day}" data-start="${item.start}"
+                     title="標記完成">♡</button>`;
+      }
+      
+      li.innerHTML = `
+        <div class="schedule-time">${item.start} ─ ${item.end}</div>
+        <div class="schedule-activity">
+          <span class="schedule-emoji">${item.emoji}</span>
+          <span>${item.activity}</span>
+          ${subjectHtml}
+        </div>
+        ${checkBtn}
+      `;
+      list.appendChild(li);
+    });
+    
+    // Bind check buttons
+    list.querySelectorAll('.check-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const d = +btn.dataset.day;
+        const s = btn.dataset.start;
+        const newState = toggleCheck(d, s);
+        btn.classList.toggle('checked', newState);
+        renderStats();
+      });
+    });
+  }
+  
+  function renderDayTabs() {
+    const tabs = document.getElementById('day-tabs');
+    tabs.innerHTML = '';
+    const today = new Date().getDay();
+    
+    const days = [1, 2, 3, 4, 5, 6, 0];
+    days.forEach(d => {
+      const tab = document.createElement('button');
+      tab.className = 'day-tab';
+      tab.textContent = '週' + dayNamesZh[d];
+      if (d === today) tab.classList.add('today');
+      if ((viewingDay === null && d === today) || viewingDay === d) tab.classList.add('active');
+      tab.onclick = () => {
+        viewingDay = (d === today) ? null : d;
+        renderDayTabs();
+        update();
+      };
+      tabs.appendChild(tab);
+    });
+  }
+  
+  // Reset button
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    if (confirm('確定要重設本週所有打卡紀錄嗎？♡')) {
+      saveCheckIns({});
+      update();
+    }
+  });
+  
+  // Floating decorations
+  function initDecorations() {
+    const symbols = ['♡', '✿', '❀', '✧', '⋆', '♥', '✦', '❁', '✺'];
+    const colors = ['#ff6b9d', '#ffb6c1', '#ff85b3', '#ffc8dd', '#fb6f92', '#ff4081'];
+    for (let i = 0; i < 30; i++) {
+      const el = document.createElement('div');
+      el.className = 'floating-decoration';
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (Math.random() * 22 + 10) + 'px';
+      el.style.color = colors[Math.floor(Math.random() * colors.length)];
+      el.style.opacity = (Math.random() * 0.5 + 0.25);
+      el.style.animationDuration = (Math.random() * 18 + 14) + 's';
+      el.style.animationDelay = (-Math.random() * 30) + 's';
+      document.body.appendChild(el);
+    }
+  }
+  
+  initDecorations();
+  renderDayTabs();
+  update();
+  setInterval(update, 1000);
+</script>
+</body>
+</html>
