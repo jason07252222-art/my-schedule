@@ -1818,8 +1818,8 @@
       <img src="kitty.png" alt="Kitty">
     </div>
     
-    <h1>~我的時刻表~<span class="flourish"></span>
-    <div class="subtitle">~ Mein Zeitplan ~</div>
+    <h1>我的時刻表<span class="flourish"></span>
+    <div class="subtitle">~ Mon Petit Calendrier ~</div>
     
     <div class="clock-display">
       <div class="current-time" id="clock">00:00<span class="seconds" id="seconds">:00</span></div>
@@ -3015,10 +3015,12 @@
     pomoState.remainSec = min * 60;
     pomoState.running = false;
     if (pomoState.interval) clearInterval(pomoState.interval);
+    document.title = '♡ 我的精緻時刻表 ♡';
     document.getElementById('pomo-start').textContent = 'START ♡';
     document.getElementById('pomo-status').textContent = 
       mode === 'focus' ? '準備專注 ♡' : (mode === 'short' ? '小憩一下 🌸' : '好好放鬆 ✿');
     updatePomoDisplay();
+    renderCycleDots();
   }
   
   function updatePomoDisplay() {
