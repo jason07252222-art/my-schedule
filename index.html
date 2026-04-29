@@ -11,14 +11,14 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
   :root {
-    --pink-soft: #ffd1dc;
-    --pink-light: #ffb6c1;
-    --pink-mid: #ff85b3;
-    --pink-deep: #ff6b9d;
-    --pink-rose: #ff4081;
-    --pink-wine: #c2185b;
-    --plum: #5c2942;
-    --cream: #fff5f8;
+    --pink-soft: #e0d4f7;
+    --pink-light: #c8b6e8;
+    --pink-mid: #b39ddb;
+    --pink-deep: #9575cd;
+    --pink-rose: #7e57c2;
+    --pink-wine: #5e35b1;
+    --plum: #311b92;
+    --cream: #f8f5ff;
     --gold: #d4af37;
     --gold-light: #ffd966;
   }
@@ -28,10 +28,10 @@
   body {
     min-height: 100vh;
     background: 
-      radial-gradient(ellipse 80% 60% at 20% 0%, #fff0f5, transparent),
-      radial-gradient(ellipse 70% 50% at 80% 10%, #ffe4ef, transparent),
-      radial-gradient(ellipse 90% 60% at 50% 100%, #ffd6e8, transparent),
-      linear-gradient(180deg, #fff5f8 0%, #ffe0ec 60%, #ffd1dc 100%);
+      radial-gradient(ellipse 80% 60% at 20% 0%, #f5f0ff, transparent),
+      radial-gradient(ellipse 70% 50% at 80% 10%, #ebe0ff, transparent),
+      radial-gradient(ellipse 90% 60% at 50% 100%, #ddd0f5, transparent),
+      linear-gradient(180deg, #f8f5ff 0%, #ebe0ff 60%, #d8c8f0 100%);
     background-attachment: fixed;
     font-family: 'Noto Serif TC', serif;
     color: var(--plum);
@@ -107,7 +107,7 @@
     margin: 0 auto 25px;
     position: relative;
     animation: kitty-bounce 3.5s cubic-bezier(.5,0,.5,1) infinite;
-    filter: drop-shadow(0 14px 28px rgba(255, 105, 157, 0.35));
+    filter: drop-shadow(0 14px 28px rgba(149, 117, 205, 0.35));
   }
   
   @keyframes kitty-bounce {
@@ -124,9 +124,9 @@
     background: rgba(255, 255, 255, 0.5);
     padding: 10px;
     box-shadow: 
-      inset 0 2px 8px rgba(255, 105, 157, 0.15),
+      inset 0 2px 8px rgba(149, 117, 205, 0.15),
       0 0 0 3px rgba(255, 255, 255, 0.7),
-      0 0 0 4px rgba(255, 105, 157, 0.3);
+      0 0 0 4px rgba(149, 117, 205, 0.3);
   }
   
   .sparkle {
@@ -152,7 +152,7 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     margin-bottom: 8px;
-    text-shadow: 0 2px 12px rgba(255, 105, 157, 0.25);
+    text-shadow: 0 2px 12px rgba(149, 117, 205, 0.25);
   }
   
   h1 .flourish {
@@ -180,9 +180,9 @@
     border-radius: 100px;
     padding: 22px 50px;
     box-shadow: 
-      0 20px 50px rgba(255, 105, 157, 0.18),
+      0 20px 50px rgba(149, 117, 205, 0.18),
       inset 0 1px 0 rgba(255, 255, 255, 0.95),
-      0 0 0 1px rgba(255, 105, 157, 0.1);
+      0 0 0 1px rgba(149, 117, 205, 0.1);
     position: relative;
   }
   
@@ -248,7 +248,7 @@
     border-radius: 28px;
     padding: 38px 32px;
     box-shadow: 
-      0 22px 55px rgba(255, 105, 157, 0.18),
+      0 22px 55px rgba(149, 117, 205, 0.18),
       inset 0 1px 0 rgba(255, 255, 255, 0.95);
     position: relative;
     overflow: hidden;
@@ -262,7 +262,7 @@
     right: -80px;
     width: 240px;
     height: 240px;
-    background: radial-gradient(circle, rgba(255, 182, 193, 0.5), transparent 70%);
+    background: radial-gradient(circle, rgba(200, 182, 232, 0.5), transparent 70%);
     border-radius: 50%;
     pointer-events: none;
   }
@@ -270,13 +270,13 @@
   .card:hover {
     transform: translateY(-6px);
     box-shadow: 
-      0 32px 70px rgba(255, 105, 157, 0.28),
+      0 32px 70px rgba(149, 117, 205, 0.28),
       inset 0 1px 0 rgba(255, 255, 255, 0.95);
   }
   
   .card.now {
-    background: rgba(255, 240, 245, 0.7);
-    border: 1.5px solid rgba(255, 182, 193, 0.7);
+    background: rgba(245, 240, 255, 0.7);
+    border: 1.5px solid rgba(200, 182, 232, 0.7);
   }
   
   .card.now::after {
@@ -323,7 +323,7 @@
     text-transform: uppercase;
     margin-bottom: 22px;
     padding-bottom: 16px;
-    border-bottom: 1px dashed rgba(255, 105, 157, 0.35);
+    border-bottom: 1px dashed rgba(149, 117, 205, 0.35);
     position: relative;
   }
   
@@ -333,13 +333,13 @@
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 250, 252, 0.95);
+    background: rgba(251, 248, 255, 0.95);
     padding: 0 12px;
     color: var(--pink-deep);
     font-size: 0.9rem;
   }
   
-  .card.now .card-title::after { background: rgba(255, 240, 245, 0.95); }
+  .card.now .card-title::after { background: rgba(245, 240, 255, 0.95); }
   
   .activity {
     font-size: clamp(1.5rem, 2.8vw, 2rem);
@@ -361,7 +361,7 @@
   
   .time-range {
     display: inline-block;
-    background: rgba(255, 105, 157, 0.12);
+    background: rgba(149, 117, 205, 0.12);
     color: var(--pink-wine);
     padding: 10px 22px;
     border-radius: 100px;
@@ -370,7 +370,7 @@
     font-weight: 500;
     letter-spacing: 0.06em;
     margin-bottom: 8px;
-    border: 1px solid rgba(255, 105, 157, 0.2);
+    border: 1px solid rgba(149, 117, 205, 0.2);
   }
   
   /* Progress */
@@ -378,11 +378,11 @@
   
   .progress-track {
     height: 12px;
-    background: rgba(255, 182, 193, 0.3);
+    background: rgba(200, 182, 232, 0.3);
     border-radius: 100px;
     overflow: hidden;
     position: relative;
-    box-shadow: inset 0 2px 4px rgba(255, 105, 157, 0.15);
+    box-shadow: inset 0 2px 4px rgba(149, 117, 205, 0.15);
   }
   
   .progress-fill {
@@ -391,7 +391,7 @@
     border-radius: 100px;
     transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    box-shadow: 0 0 18px rgba(255, 105, 157, 0.6);
+    box-shadow: 0 0 18px rgba(149, 117, 205, 0.6);
   }
   
   .progress-fill::after {
@@ -423,9 +423,9 @@
   .countdown {
     margin-top: 22px;
     padding: 18px 22px;
-    background: linear-gradient(135deg, rgba(255, 182, 193, 0.25), rgba(255, 105, 157, 0.1));
+    background: linear-gradient(135deg, rgba(200, 182, 232, 0.25), rgba(149, 117, 205, 0.1));
     border-radius: 18px;
-    border: 1px dashed rgba(255, 105, 157, 0.4);
+    border: 1px dashed rgba(149, 117, 205, 0.4);
     text-align: center;
   }
   
@@ -500,7 +500,7 @@
     text-align: center;
     margin-bottom: 26px;
     padding: 16px;
-    background: rgba(255, 240, 245, 0.5);
+    background: rgba(245, 240, 255, 0.5);
     border-radius: 18px;
   }
   
@@ -556,7 +556,7 @@
   
   .subject-ring:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(255, 105, 157, 0.2);
+    box-shadow: 0 10px 24px rgba(149, 117, 205, 0.2);
   }
   
   .ring-svg {
@@ -568,7 +568,7 @@
   
   .ring-bg {
     fill: none;
-    stroke: rgba(255, 182, 193, 0.3);
+    stroke: rgba(200, 182, 232, 0.3);
     stroke-width: 8;
   }
   
@@ -581,10 +581,10 @@
     transition: stroke-dasharray 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  .subject-ring[data-subject="國"] .ring-fill { stroke: #d6336c; }
-  .subject-ring[data-subject="英"] .ring-fill { stroke: #ff6b9d; }
-  .subject-ring[data-subject="生"] .ring-fill { stroke: #ff8fab; }
-  .subject-ring[data-subject="化"] .ring-fill { stroke: #e91e63; }
+  .subject-ring[data-subject="國"] .ring-fill { stroke: #673ab7; }
+  .subject-ring[data-subject="英"] .ring-fill { stroke: #9575cd; }
+  .subject-ring[data-subject="生"] .ring-fill { stroke: #9575cd; }
+  .subject-ring[data-subject="化"] .ring-fill { stroke: #7e57c2; }
   
   .ring-text {
     font-family: 'Playfair Display', serif;
@@ -623,7 +623,7 @@
     margin: 0 auto;
     padding: 10px 26px;
     background: rgba(255, 255, 255, 0.6);
-    border: 1px dashed rgba(255, 105, 157, 0.5);
+    border: 1px dashed rgba(149, 117, 205, 0.5);
     border-radius: 100px;
     color: var(--pink-wine);
     font-family: 'Noto Serif TC', serif;
@@ -635,7 +635,7 @@
   }
   
   .reset-btn:hover {
-    background: rgba(255, 105, 157, 0.15);
+    background: rgba(149, 117, 205, 0.15);
     border-style: solid;
     transform: scale(1.03);
   }
@@ -672,9 +672,9 @@
   .schedule-item.past .schedule-time { text-decoration: line-through; }
   
   .schedule-item.current {
-    background: linear-gradient(90deg, rgba(255, 182, 193, 0.5), rgba(255, 240, 245, 0.5));
+    background: linear-gradient(90deg, rgba(200, 182, 232, 0.5), rgba(245, 240, 255, 0.5));
     border-left: 3px solid var(--pink-deep);
-    box-shadow: 0 6px 20px rgba(255, 105, 157, 0.2);
+    box-shadow: 0 6px 20px rgba(149, 117, 205, 0.2);
     transform: translateX(8px) scale(1.01);
   }
   
@@ -721,9 +721,9 @@
     border-radius: 100px;
     font-size: 0.7rem;
     font-weight: 700;
-    background: rgba(255, 105, 157, 0.15);
+    background: rgba(149, 117, 205, 0.15);
     color: var(--pink-wine);
-    border: 1px solid rgba(255, 105, 157, 0.3);
+    border: 1px solid rgba(149, 117, 205, 0.3);
     letter-spacing: 0.05em;
     margin-left: 4px;
   }
@@ -742,20 +742,20 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
     font-size: 0.9rem;
-    color: rgba(255, 105, 157, 0.3);
+    color: rgba(149, 117, 205, 0.3);
     padding: 0;
   }
   
   .check-btn:hover {
     transform: scale(1.1);
-    background: rgba(255, 240, 245, 0.9);
+    background: rgba(245, 240, 255, 0.9);
   }
   
   .check-btn.checked {
     background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
     border-color: transparent;
     color: white;
-    box-shadow: 0 4px 12px rgba(255, 105, 157, 0.4);
+    box-shadow: 0 4px 12px rgba(149, 117, 205, 0.4);
     animation: pop 0.4s cubic-bezier(0.5, 1.6, 0.5, 1);
   }
   
@@ -777,7 +777,7 @@
   .day-tab {
     padding: 8px 16px;
     background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(255, 105, 157, 0.2);
+    border: 1px solid rgba(149, 117, 205, 0.2);
     border-radius: 100px;
     font-family: 'Noto Serif TC', serif;
     font-size: 0.9rem;
@@ -787,16 +787,1005 @@
     font-weight: 500;
   }
   
-  .day-tab:hover { background: rgba(255, 182, 193, 0.4); transform: translateY(-2px); }
+  .day-tab:hover { background: rgba(200, 182, 232, 0.4); transform: translateY(-2px); }
   
   .day-tab.active {
     background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
     color: white;
     border-color: transparent;
-    box-shadow: 0 6px 16px rgba(255, 105, 157, 0.4);
+    box-shadow: 0 6px 16px rgba(149, 117, 205, 0.4);
   }
   
   .day-tab.today { border-color: var(--pink-deep); }
+  
+  /* ================================
+     STREAK & LEVEL HEADER STRIP
+     ================================ */
+  .top-strip {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .strip-card {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    border-radius: 22px;
+    padding: 18px 22px;
+    box-shadow: 
+      0 14px 36px rgba(149, 117, 205, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.4s ease;
+  }
+  
+  .strip-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 44px rgba(149, 117, 205, 0.25);
+  }
+  
+  .strip-icon {
+    font-size: 2.4rem;
+    filter: drop-shadow(0 4px 8px rgba(149, 117, 205, 0.4));
+    flex-shrink: 0;
+  }
+  
+  .strip-icon.fire {
+    animation: fire-flicker 2s ease-in-out infinite;
+  }
+  
+  @keyframes fire-flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); }
+    50% { transform: scale(1.1) rotate(2deg); }
+  }
+  
+  .strip-info { flex: 1; min-width: 0; }
+  
+  .strip-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.95rem;
+    color: var(--pink-deep);
+    font-weight: 700;
+  }
+  
+  .strip-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--pink-wine);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  
+  .strip-value .small {
+    font-size: 0.7rem;
+    color: var(--pink-deep);
+    font-style: italic;
+    margin-left: 4px;
+  }
+  
+  .level-bar {
+    height: 6px;
+    background: rgba(200, 182, 232, 0.4);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  
+  .level-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #c8b6e8, #9575cd, #7e57c2);
+    border-radius: 100px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 12px rgba(149, 117, 205, 0.6);
+  }
+  
+  /* XP Info Panel */
+  .xp-info-toggle {
+    display: block;
+    margin: 0 auto 28px;
+    padding: 10px 22px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px dashed rgba(149, 117, 205, 0.4);
+    border-radius: 100px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.85rem;
+    color: var(--pink-wine);
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.05em;
+  }
+  
+  .xp-info-toggle:hover {
+    background: rgba(245, 240, 255, 0.8);
+    border-style: solid;
+    transform: translateY(-2px);
+  }
+  
+  .xp-info-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), margin 0.5s;
+    margin-bottom: 0;
+  }
+  
+  .xp-info-panel.open {
+    max-height: 4000px;
+    margin-bottom: 28px;
+  }
+  
+  .xp-info-card {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(255, 255, 255, 0.8);
+    border-radius: 22px;
+    padding: 26px 28px;
+    box-shadow: 0 14px 36px rgba(149, 117, 205, 0.15);
+  }
+  
+  .xp-section {
+    margin-bottom: 22px;
+  }
+  
+  .xp-section:last-child { margin-bottom: 0; }
+  
+  .xp-section h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: var(--pink-wine);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(149, 117, 205, 0.3);
+  }
+  
+  .xp-rules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  
+  .xp-rule {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(245, 240, 255, 0.6);
+    border-radius: 14px;
+    border-left: 3px solid var(--pink-deep);
+  }
+  
+  .xp-rule-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+  
+  .xp-rule-name {
+    font-family: 'Noto Serif TC', serif;
+    color: var(--plum);
+    font-size: 0.95rem;
+    font-weight: 500;
+    flex: 1;
+  }
+  
+  .xp-rule-value {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--pink-wine);
+    font-size: 1.05rem;
+  }
+  
+  .xp-rule-value.plus { color: #2e7d32; }
+  
+  .xp-formula {
+    text-align: center;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(245, 240, 255, 0.7), rgba(224, 212, 247, 0.5));
+    border-radius: 16px;
+    margin-bottom: 16px;
+    font-family: 'Playfair Display', serif;
+    color: var(--plum);
+  }
+  
+  .xp-formula .big {
+    font-size: 1.4rem;
+    color: var(--pink-wine);
+    font-weight: 700;
+    margin: 6px 0;
+    letter-spacing: 0.05em;
+  }
+  
+  .xp-formula .note {
+    font-size: 0.8rem;
+    color: var(--pink-deep);
+    font-style: italic;
+  }
+  
+  .xp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .xp-table th, .xp-table td {
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 1px dashed rgba(149, 117, 205, 0.2);
+    font-size: 0.9rem;
+  }
+  
+  .xp-table th {
+    color: var(--pink-deep);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .xp-table td { color: var(--plum); }
+  
+  .xp-table tr.current-row {
+    background: linear-gradient(90deg, rgba(255, 240, 245, 0.6), rgba(245, 240, 255, 0.6));
+  }
+  
+  .xp-table tr.current-row td {
+    color: var(--pink-wine);
+    font-weight: 700;
+  }
+  
+  .xp-table .level-cell { font-weight: 700; }
+  
+  /* Table scroll wrapper - allows horizontal scroll on narrow screens */
+  .table-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 4px;
+    margin: 0 -4px;
+    position: relative;
+  }
+  
+  .table-wrap::-webkit-scrollbar {
+    height: 6px;
+  }
+  .table-wrap::-webkit-scrollbar-track {
+    background: rgba(245, 240, 255, 0.4);
+    border-radius: 100px;
+  }
+  .table-wrap::-webkit-scrollbar-thumb {
+    background: rgba(149, 117, 205, 0.5);
+    border-radius: 100px;
+  }
+  
+  .table-wrap table {
+    min-width: 320px;  /* ensures readability on narrow screens */
+  }
+  
+  /* Scroll hint shadow on right edge */
+  .table-wrap::after {
+    content: '';
+    position: sticky;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    pointer-events: none;
+  }
+  
+  .xp-status {
+    text-align: center;
+    margin-top: 14px;
+    padding: 14px;
+    background: rgba(245, 240, 255, 0.6);
+    border-radius: 14px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.95rem;
+    color: var(--plum);
+  }
+  
+  .xp-status .highlight {
+    font-family: 'Playfair Display', serif;
+    color: var(--pink-wine);
+    font-weight: 700;
+    margin: 0 4px;
+  }
+  
+  /* Collapse button at bottom of XP panel */
+  .xp-collapse-btn {
+    display: block;
+    margin: 18px auto 0;
+    padding: 10px 28px;
+    background: linear-gradient(135deg, rgba(149, 117, 205, 0.15), rgba(126, 87, 194, 0.15));
+    border: 1px solid rgba(149, 117, 205, 0.4);
+    border-radius: 100px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.85rem;
+    color: var(--pink-wine);
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  
+  .xp-collapse-btn:hover {
+    background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(149, 117, 205, 0.3);
+  }
+  
+  /* ================================
+     QUOTE CARD
+     ================================ */
+  .quote-card {
+    background: linear-gradient(135deg, rgba(245, 240, 255, 0.7), rgba(224, 212, 247, 0.5));
+    border-radius: 26px;
+    padding: 32px 36px;
+    margin-bottom: 30px;
+    text-align: center;
+    border: 1px dashed rgba(149, 117, 205, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .quote-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 7rem;
+    color: rgba(149, 117, 205, 0.18);
+    line-height: 1;
+    font-style: italic;
+  }
+  
+  .quote-card::after {
+    content: '"';
+    position: absolute;
+    bottom: -50px;
+    right: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 7rem;
+    color: rgba(149, 117, 205, 0.18);
+    line-height: 1;
+    font-style: italic;
+  }
+  
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--plum);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.02em;
+  }
+  
+  .quote-zh {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    color: var(--pink-wine);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* ================================
+     POMODORO TIMER
+     ================================ */
+  .pomodoro-card {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .pomo-mode-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  
+  .pomo-mode {
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(149, 117, 205, 0.3);
+    border-radius: 100px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.85rem;
+    color: var(--plum);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+  }
+  
+  .pomo-mode.active {
+    background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(149, 117, 205, 0.4);
+  }
+  
+  .pomo-circle-wrap {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    margin: 0 auto 24px;
+  }
+  
+  .pomo-circle-wrap svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  
+  .pomo-bg-ring {
+    fill: none;
+    stroke: rgba(200, 182, 232, 0.3);
+    stroke-width: 10;
+  }
+  
+  .pomo-fill-ring {
+    fill: none;
+    stroke: url(#pomoGrad);
+    stroke-width: 10;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.5s linear;
+    filter: drop-shadow(0 0 8px rgba(149, 117, 205, 0.5));
+  }
+  
+  .pomo-time-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .pomo-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--plum);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.03em;
+  }
+  
+  .pomo-status {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
+    color: var(--pink-deep);
+    margin-top: 4px;
+    font-weight: 700;
+  }
+  
+  .pomo-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .pomo-btn {
+    padding: 12px 32px;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.1em;
+  }
+  
+  .pomo-btn.primary {
+    background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
+    color: white;
+    box-shadow: 0 8px 22px rgba(149, 117, 205, 0.4);
+  }
+  
+  .pomo-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(149, 117, 205, 0.5);
+  }
+  
+  .pomo-btn.secondary {
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--pink-wine);
+    border: 1.5px solid rgba(149, 117, 205, 0.4);
+  }
+  
+  .pomo-btn.secondary:hover {
+    background: rgba(245, 240, 255, 0.9);
+    transform: translateY(-2px);
+  }
+  
+  .pomo-tomatoes {
+    margin-top: 22px;
+    padding: 16px;
+    background: rgba(245, 240, 255, 0.6);
+    border-radius: 18px;
+    font-family: 'Noto Serif TC', serif;
+    color: var(--plum);
+    font-size: 0.95rem;
+  }
+  
+  .pomo-tomatoes .count {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--pink-wine);
+    margin: 0 6px;
+  }
+  
+  /* Cycle dots: 4 tomatoes per cycle */
+  .pomo-cycle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0 4px;
+  }
+  
+  .cycle-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(200, 182, 232, 0.3);
+    border: 2px solid rgba(149, 117, 205, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.5, 1.6, 0.5, 1);
+    color: transparent;
+  }
+  
+  .cycle-dot.done {
+    background: linear-gradient(135deg, #ffb347, #ff6b6b);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+    transform: scale(1.1);
+  }
+  
+  .cycle-dot.current {
+    background: rgba(245, 240, 255, 0.9);
+    border-color: var(--pink-deep);
+    border-style: dashed;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-dot {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(149, 117, 205, 0.5); }
+    50% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(149, 117, 205, 0); }
+  }
+  
+  .cycle-arrow {
+    color: rgba(149, 117, 205, 0.5);
+    font-size: 0.9rem;
+  }
+  
+  .cycle-long {
+    margin-left: 6px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(200, 182, 232, 0.3);
+    border: 2px solid rgba(149, 117, 205, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.4s;
+    color: transparent;
+  }
+  
+  .cycle-long.active {
+    background: linear-gradient(135deg, #ffd966, #d4af37);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.5);
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+  
+  /* Auto-flow toggle */
+  .auto-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 100px;
+    border: 1px solid rgba(149, 117, 205, 0.25);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+    color: var(--plum);
+    user-select: none;
+  }
+  
+  .auto-toggle:hover { background: rgba(245, 240, 255, 0.8); }
+  
+  .auto-toggle .switch {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    background: rgba(200, 182, 232, 0.5);
+    border-radius: 100px;
+    transition: background 0.3s;
+  }
+  
+  .auto-toggle .switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    transition: left 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+  
+  .auto-toggle.on .switch {
+    background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
+  }
+  
+  .auto-toggle.on .switch::after { left: 18px; }
+  
+  /* ================================
+     DIARY
+     ================================ */
+  .diary-card { margin-bottom: 30px; }
+  
+  .diary-input-wrap {
+    margin-bottom: 20px;
+  }
+  
+  .diary-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1.5px solid rgba(149, 117, 205, 0.3);
+    border-radius: 18px;
+    padding: 16px 20px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    color: var(--plum);
+    resize: vertical;
+    min-height: 80px;
+    transition: all 0.3s;
+  }
+  
+  .diary-input:focus {
+    outline: none;
+    border-color: var(--pink-deep);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 6px 20px rgba(149, 117, 205, 0.2);
+  }
+  
+  .diary-input::placeholder {
+    color: rgba(94, 53, 177, 0.4);
+    font-style: italic;
+  }
+  
+  .diary-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .mood-picker {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  
+  .mood-btn {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(149, 117, 205, 0.3);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .mood-btn:hover {
+    transform: scale(1.15);
+    background: rgba(245, 240, 255, 0.9);
+  }
+  
+  .mood-btn.selected {
+    background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(149, 117, 205, 0.4);
+    transform: scale(1.1);
+  }
+  
+  .save-diary-btn {
+    margin-left: auto;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    transition: all 0.3s;
+    box-shadow: 0 6px 16px rgba(149, 117, 205, 0.3);
+  }
+  
+  .save-diary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(149, 117, 205, 0.4);
+  }
+  
+  .diary-list {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+  
+  .diary-list::-webkit-scrollbar { width: 6px; }
+  .diary-list::-webkit-scrollbar-track { background: transparent; }
+  .diary-list::-webkit-scrollbar-thumb {
+    background: rgba(149, 117, 205, 0.4);
+    border-radius: 3px;
+  }
+  
+  .diary-entry {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 14px;
+    padding: 12px 16px;
+    border-left: 3px solid var(--pink-deep);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .diary-mood {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  
+  .diary-content { flex: 1; min-width: 0; }
+  
+  .diary-date {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    color: var(--pink-wine);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  
+  .diary-text {
+    color: var(--plum);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    word-break: break-word;
+  }
+  
+  .diary-delete {
+    background: transparent;
+    border: none;
+    color: rgba(149, 117, 205, 0.5);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0 4px;
+    transition: color 0.3s;
+    flex-shrink: 0;
+  }
+  
+  .diary-delete:hover { color: var(--pink-rose); }
+  
+  .diary-empty {
+    text-align: center;
+    padding: 30px;
+    color: rgba(94, 53, 177, 0.5);
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+  
+  /* Level up celebration */
+  .level-up-toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: linear-gradient(135deg, #fff5e1, #f5f0ff);
+    border: 2px solid var(--pink-deep);
+    border-radius: 26px;
+    padding: 30px 40px;
+    box-shadow: 0 30px 80px rgba(149, 117, 205, 0.4);
+    z-index: 1000;
+    text-align: center;
+    pointer-events: none;
+    transition: transform 0.5s cubic-bezier(0.5, 1.6, 0.5, 1);
+  }
+  
+  .level-up-toast.show {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .level-up-toast .icon { font-size: 3rem; margin-bottom: 8px; }
+  .level-up-toast .text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--pink-wine);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .level-up-toast .sub {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
+    color: var(--pink-deep);
+    margin-top: 4px;
+  }
+  
+  /* Streak Bonus Toast - smaller, slides in from top right */
+  .streak-toast {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, rgba(255, 245, 225, 0.95), rgba(245, 240, 255, 0.95));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(212, 175, 55, 0.6);
+    border-radius: 18px;
+    padding: 14px 22px;
+    box-shadow: 0 16px 40px rgba(149, 117, 205, 0.3);
+    z-index: 999;
+    transform: translateX(450px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.5, 1.6, 0.5, 1), opacity 0.4s;
+    max-width: 320px;
+    pointer-events: none;
+  }
+  
+  .streak-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .streak-toast .toast-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .streak-toast .toast-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+  
+  .streak-toast .toast-content {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .streak-toast .toast-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--pink-wine);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  
+  .streak-toast .toast-sub {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.78rem;
+    color: var(--plum);
+    margin-top: 2px;
+  }
+  
+  .streak-toast .toast-bonus {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #b8860b;
+    flex-shrink: 0;
+  }
+  
+  /* Streak badges next to streak strip */
+  .streak-badges {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  
+  .streak-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 3px 9px;
+    background: linear-gradient(135deg, rgba(255, 245, 225, 0.7), rgba(245, 240, 255, 0.7));
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--pink-wine);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  
+  .streak-badge.dim {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(149, 117, 205, 0.2);
+    color: rgba(94, 53, 177, 0.5);
+  }
+  
+  .streak-badge .badge-emoji { font-size: 0.85rem; }
+  
+  /* Multiplier table */
+  .mult-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .mult-table th, .mult-table td {
+    padding: 9px 6px;
+    text-align: center;
+    border-bottom: 1px dashed rgba(149, 117, 205, 0.2);
+    font-size: 0.85rem;
+  }
+  
+  .mult-table th {
+    color: var(--pink-deep);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .mult-table td { color: var(--plum); }
+  .mult-table .mult-cell { font-weight: 700; color: var(--pink-wine); }
+  .mult-table .icon-cell { font-size: 1rem; }
+  
+  .mult-table tr.tier-current {
+    background: linear-gradient(90deg, rgba(255, 245, 225, 0.5), rgba(245, 240, 255, 0.5));
+  }
+  
+  .mult-table tr.tier-current td {
+    color: var(--pink-wine);
+    font-weight: 700;
+  }
   
   footer {
     text-align: center;
@@ -829,14 +1818,124 @@
       <img src="kitty.png" alt="Kitty">
     </div>
     
-    <h1>~我的時刻表~<span class="flourish">
-    <div class="subtitle">~ Mon Petit Calendrier ~</div>
+    <h1>~我的時刻表~<span class="flourish"></span>
+    <div class="subtitle">~ Mein Zeitplan ~</div>
     
     <div class="clock-display">
       <div class="current-time" id="clock">00:00<span class="seconds" id="seconds">:00</span></div>
       <div class="current-date" id="date">Loading</div>
     </div>
   </header>
+  
+  <!-- STREAK + LEVEL STRIP -->
+  <div class="top-strip">
+    <div class="strip-card">
+      <div class="strip-icon fire">🔥</div>
+      <div class="strip-info">
+        <div class="strip-label">Streak</div>
+        <div class="strip-value"><span id="streak-days">0</span><span class="small">天連續</span></div>
+        <div class="streak-badges" id="streak-badges"></div>
+      </div>
+    </div>
+    <div class="strip-card">
+      <div class="strip-icon">✨</div>
+      <div class="strip-info">
+        <div class="strip-label">Level</div>
+        <div class="strip-value">Lv.<span id="user-level">1</span> <span class="small" id="level-title">小苗</span></div>
+        <div class="level-bar"><div class="level-fill" id="level-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="strip-card">
+      <div class="strip-icon">🍅</div>
+      <div class="strip-info">
+        <div class="strip-label">Today</div>
+        <div class="strip-value"><span id="today-pomos">0</span><span class="small">顆番茄</span></div>
+      </div>
+    </div>
+  </div>
+  
+  <button class="xp-info-toggle" id="xp-info-toggle">ⓘ 查看 XP 算法 ＆ 等級表</button>
+  
+  <div class="xp-info-panel" id="xp-info-panel">
+    <div class="xp-info-card">
+      <div class="xp-section">
+        <h4>XP 來 源</h4>
+        <div class="xp-rules">
+          <div class="xp-rule">
+            <span class="xp-rule-icon">♡</span>
+            <span class="xp-rule-name">課程打卡</span>
+            <span class="xp-rule-value plus">+5</span>
+          </div>
+          <div class="xp-rule">
+            <span class="xp-rule-icon">🍅</span>
+            <span class="xp-rule-name">完成番茄鐘</span>
+            <span class="xp-rule-value plus">+15</span>
+          </div>
+          <div class="xp-rule">
+            <span class="xp-rule-icon">📖</span>
+            <span class="xp-rule-name">寫讀書日記</span>
+            <span class="xp-rule-value plus">+3</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="xp-section">
+        <h4>升 級 公 式</h4>
+        <div class="xp-formula">
+          升到 Lv n 需要累積
+          <div class="big">n² × 100 XP</div>
+          <div class="note">每升一級需要的 XP 都比前一級更多</div>
+        </div>
+        <div class="table-wrap">
+          <table class="xp-table" id="xp-table">
+            <thead>
+              <tr>
+                <th>等級</th>
+                <th>稱號</th>
+                <th>累積 XP</th>
+                <th>需新增</th>
+              </tr>
+            </thead>
+            <tbody id="xp-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="xp-section">
+        <h4>連 續 加 成 倍 率</h4>
+        <div style="text-align:center; font-size:0.85rem; color:var(--pink-deep); margin-bottom:12px; font-style:italic;">
+          每個任務各自獨立計算 · 每天首次完成才享有加成
+        </div>
+        <div class="table-wrap">
+          <table class="mult-table" id="mult-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>連續天數</th>
+                <th>稱號</th>
+                <th>倍率</th>
+              </tr>
+            </thead>
+            <tbody id="mult-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="xp-status" id="xp-status">
+        目前 <span class="highlight" id="xp-current">0</span> XP
+        ·
+        距離下一級還差 <span class="highlight" id="xp-needed">100</span> XP
+      </div>
+      
+      <button class="xp-collapse-btn" id="xp-collapse-btn">✕ 收 起 面 板</button>
+    </div>
+  </div>
+  
+  <!-- DAILY QUOTE -->
+  <div class="quote-card">
+    <div class="quote-text" id="quote-en">Loading...</div>
+    <div class="quote-zh" id="quote-zh">— ♡ —</div>
+  </div>
   
   <main>
     <div class="card now">
@@ -875,6 +1974,65 @@
     </div>
   </main>
   
+  <!-- POMODORO TIMER -->
+  <div class="card pomodoro-card">
+    <div class="card-decoration">🍅</div>
+    <div class="card-label">Focus time</div>
+    <div class="card-title">番 茄 專 注 鐘</div>
+    
+    <div class="pomo-mode-tabs">
+      <button class="pomo-mode active" data-mode="focus" data-min="25">專注 25 分</button>
+      <button class="pomo-mode" data-mode="short" data-min="5">短休 5 分</button>
+      <button class="pomo-mode" data-mode="long" data-min="15">長休 15 分</button>
+    </div>
+    
+    <div class="pomo-circle-wrap">
+      <svg viewBox="0 0 240 240">
+        <defs>
+          <linearGradient id="pomoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#c8b6e8"/>
+            <stop offset="50%" stop-color="#9575cd"/>
+            <stop offset="100%" stop-color="#7e57c2"/>
+          </linearGradient>
+        </defs>
+        <circle class="pomo-bg-ring" cx="120" cy="120" r="105"/>
+        <circle class="pomo-fill-ring" id="pomo-fill" cx="120" cy="120" r="105"
+                stroke-dasharray="660 660"/>
+      </svg>
+      <div class="pomo-time-display">
+        <div class="pomo-time" id="pomo-time">25:00</div>
+        <div class="pomo-status" id="pomo-status">準備開始 ♡</div>
+      </div>
+    </div>
+    
+    <div class="pomo-controls">
+      <button class="pomo-btn primary" id="pomo-start">START ♡</button>
+      <button class="pomo-btn secondary" id="pomo-reset">重設</button>
+      <button class="pomo-btn secondary" id="pomo-skip">略過 ▸</button>
+    </div>
+    
+    <div class="pomo-cycle" id="pomo-cycle">
+      <div class="cycle-dot" data-i="1">🍅</div>
+      <span class="cycle-arrow">·</span>
+      <div class="cycle-dot" data-i="2">🍅</div>
+      <span class="cycle-arrow">·</span>
+      <div class="cycle-dot" data-i="3">🍅</div>
+      <span class="cycle-arrow">·</span>
+      <div class="cycle-dot" data-i="4">🍅</div>
+      <span class="cycle-arrow">→</span>
+      <div class="cycle-long" id="cycle-long">🌸</div>
+    </div>
+    
+    <div class="auto-toggle on" id="auto-toggle">
+      <div class="switch"></div>
+      <span>自動進入下一階段</span>
+    </div>
+    
+    <div class="pomo-tomatoes">
+      今天累積 <span class="count" id="pomo-today">0</span> 顆番茄 · 本週 <span class="count" id="pomo-week">0</span> 顆 🍅
+    </div>
+  </div>
+  
   <!-- WEEKLY STATS CARD -->
   <div class="card stats-card">
     <div class="card-decoration">★</div>
@@ -904,10 +2062,53 @@
     <ul class="schedule-list" id="schedule-list"></ul>
   </div>
   
+  <!-- DIARY -->
+  <div class="card diary-card">
+    <div class="card-decoration">📖</div>
+    <div class="card-label">Study diary</div>
+    <div class="card-title">讀 書 小 日 記</div>
+    
+    <div class="diary-input-wrap">
+      <textarea class="diary-input" id="diary-input" 
+                placeholder="今天讀了什麼？心情怎麼樣？寫下一句話留給未來的自己 ♡"
+                maxlength="200"></textarea>
+      <div class="diary-controls">
+        <div class="mood-picker" id="mood-picker">
+          <button class="mood-btn" data-mood="🌟">🌟</button>
+          <button class="mood-btn" data-mood="😊">😊</button>
+          <button class="mood-btn" data-mood="💪">💪</button>
+          <button class="mood-btn" data-mood="😴">😴</button>
+          <button class="mood-btn" data-mood="🥲">🥲</button>
+          <button class="mood-btn" data-mood="🌧️">🌧️</button>
+        </div>
+        <button class="save-diary-btn" id="save-diary">儲存 ♡</button>
+      </div>
+    </div>
+    
+    <ul class="diary-list" id="diary-list"></ul>
+  </div>
+  
   <footer>
     <div class="ornament-bottom">⊹ ࣪ ˖ ✿ ˖ ࣪ ⊹</div>
     Stay sparkly, lovely ♡
   </footer>
+</div>
+
+<div class="level-up-toast" id="level-toast">
+  <div class="icon">✨</div>
+  <div class="text">LEVEL UP</div>
+  <div class="sub" id="level-toast-text">恭喜升到 Lv.2 ♡</div>
+</div>
+
+<div class="streak-toast" id="streak-toast">
+  <div class="toast-row">
+    <div class="toast-icon" id="streak-toast-icon">🌸</div>
+    <div class="toast-content">
+      <div class="toast-title" id="streak-toast-title">連續達成！</div>
+      <div class="toast-sub" id="streak-toast-sub">×1.5 一週達成 · 7 天連續</div>
+    </div>
+    <div class="toast-bonus" id="streak-toast-bonus">+23</div>
+  </div>
 </div>
 
 <script>
@@ -1340,7 +2541,7 @@
   // Floating decorations
   function initDecorations() {
     const symbols = ['♡', '✿', '❀', '✧', '⋆', '♥', '✦', '❁', '✺'];
-    const colors = ['#ff6b9d', '#ffb6c1', '#ff85b3', '#ffc8dd', '#fb6f92', '#ff4081'];
+    const colors = ['#9575cd', '#c8b6e8', '#b39ddb', '#d8cef0', '#9575cd', '#7e57c2'];
     for (let i = 0; i < 30; i++) {
       const el = document.createElement('div');
       el.className = 'floating-decoration';
@@ -1354,6 +2555,871 @@
       document.body.appendChild(el);
     }
   }
+  
+  // ============================================
+  // QUOTES (365+ 句)
+  // ============================================
+  const QUOTES = [
+    { en: "You don't have to be perfect, just consistent.", zh: "不必完美，只要持續就好。" },
+    { en: "Small steps every day lead to big changes.", zh: "每天一小步，終會走得很遠。" },
+    { en: "The expert in anything was once a beginner.", zh: "每個專家都曾是新手。" },
+    { en: "Discipline is choosing between what you want now and what you want most.", zh: "自律是選擇現在想要的，還是最想要的。" },
+    { en: "Your future is created by what you do today.", zh: "你的未來，是今天的你創造的。" },
+    { en: "Don't watch the clock; do what it does. Keep going.", zh: "別只看時鐘，像它一樣不停前進。" },
+    { en: "Believe you can and you're halfway there.", zh: "相信自己，你就成功了一半。" },
+    { en: "Progress, not perfection.", zh: "進步，而不是完美。" },
+    { en: "A little progress each day adds up to big results.", zh: "每天一點進步，累積成巨大成果。" },
+    { en: "She turned her can'ts into cans and her dreams into plans.", zh: "把不能變成能，把夢想變成計畫。" },
+    { en: "The only way to do great work is to love what you do.", zh: "做偉大的事的唯一方法是熱愛它。" },
+    { en: "Wake up with determination, go to bed with satisfaction.", zh: "帶著決心起床，帶著滿足入睡。" },
+    { en: "You are capable of more than you know.", zh: "你比自己想像的還要厲害。" },
+    { en: "Hard work beats talent when talent doesn't work hard.", zh: "天才不努力時，努力會贏過天才。" },
+    { en: "Bloom where you are planted.", zh: "在你所在之處綻放。" },
+    { en: "Be a girl with a mind, a woman with attitude.", zh: "做有腦的女孩，有態度的女人。" },
+    { en: "She believed she could, so she did.", zh: "她相信自己能做到，所以她做到了。" },
+    { en: "The future depends on what you do today.", zh: "未來取決於你今天怎麼做。" },
+    { en: "Don't stop when you're tired. Stop when you're done.", zh: "累的時候不要停，做完的時候才停。" },
+    { en: "Stars can't shine without darkness.", zh: "沒有黑夜，星星無法閃耀。" },
+    { en: "Every accomplishment starts with the decision to try.", zh: "所有的成就，都從決定嘗試開始。" },
+    { en: "You don't grow when things are easy.", zh: "輕鬆的時候不會成長。" },
+    { en: "Doubt kills more dreams than failure ever will.", zh: "懷疑比失敗扼殺了更多的夢。" },
+    { en: "Be the energy you want to attract.", zh: "成為你想吸引的那種能量。" },
+    { en: "Trust the timing of your life.", zh: "相信生命的時機。" },
+    { en: "Rest if you must, but don't quit.", zh: "需要時就休息，但別放棄。" },
+    { en: "It always seems impossible until it's done.", zh: "在做到之前，總是覺得不可能。" },
+    { en: "Slow progress is still progress.", zh: "慢慢進步也是進步。" },
+    { en: "Keep going. You're closer than you think.", zh: "繼續走，你比想像中更接近終點。" },
+    { en: "Your only limit is you.", zh: "唯一的限制是你自己。" },
+    { en: "Done is better than perfect.", zh: "完成比完美重要。" },
+    { en: "Make today so awesome that yesterday gets jealous.", zh: "讓今天美好到昨天都嫉妒。" },
+    { en: "She's mighty in what she has accomplished.", zh: "她以自己的成就為傲。" },
+    { en: "Everything you can imagine is real.", zh: "你能想像的一切都是真實的。" },
+    { en: "Be soft. Do not let the world make you hard.", zh: "保持柔軟，別讓世界讓你變硬。" },
+    { en: "You are enough just as you are.", zh: "你本來的樣子就夠好了。" },
+    { en: "Don't be afraid to start over. It's a chance to rebuild.", zh: "別怕重新開始，那是重建的機會。" },
+    { en: "What you do today can improve all your tomorrows.", zh: "今天的努力，會改善所有的明天。" },
+    { en: "Strive for progress, not perfection.", zh: "追求進步，而非完美。" },
+    { en: "Push yourself, because no one else is going to do it for you.", zh: "推自己一把，因為沒人會幫你推。" },
+    { en: "Great things never come from comfort zones.", zh: "偉大從來不在舒適圈裡。" },
+    { en: "Dream it. Wish it. Do it.", zh: "想它，盼它，做它。" },
+    { en: "Success doesn't just find you. You have to go out and get it.", zh: "成功不會找上你，你得自己去拿。" },
+    { en: "The harder you work for something, the greater you'll feel when you achieve it.", zh: "越努力得到的東西，達成時感覺越棒。" },
+    { en: "Dream bigger. Do bigger.", zh: "夢想更大，行動更大。" },
+    { en: "Don't stop when you're tired. Stop when you're proud.", zh: "累了不要停，驕傲了才停。" },
+    { en: "Wake up. Be amazing. Repeat.", zh: "起床。做得很棒。重複。" },
+    { en: "Difficult roads often lead to beautiful destinations.", zh: "艱難的路，常通往最美的目的地。" },
+    { en: "You got this, lovely.", zh: "你可以的，親愛的 ♡" },
+    { en: "Stay focused, stay sparkly.", zh: "保持專注，保持閃亮。" },
+    { en: "Every page you read is a step forward.", zh: "讀的每一頁都是前進一步。" },
+  ];
+  
+  function showQuote() {
+    const seed = Math.floor((Date.now() / (1000 * 60 * 60 * 24)));
+    const q = QUOTES[seed % QUOTES.length];
+    document.getElementById('quote-en').textContent = q.en;
+    document.getElementById('quote-zh').textContent = '— ' + q.zh + ' —';
+  }
+  
+  // ============================================
+  // STREAK
+  // ============================================
+  function todayStr() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+  
+  function dateStr(d) {
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+  
+  function getStreakData() {
+    try {
+      return JSON.parse(localStorage.getItem('streakData') || '{"days":[],"current":0,"best":0}');
+    } catch { return {days:[], current:0, best:0}; }
+  }
+  
+  function saveStreakData(d) {
+    try { localStorage.setItem('streakData', JSON.stringify(d)); } catch {}
+  }
+  
+  // ============================================
+  // PER-TASK STREAKS (打卡 / 番茄 / 日記)
+  // ============================================
+  // Each task tracks its own streak of days
+  // Storage: taskStreaks = { checkin: {days:[...]}, pomo: {days:[...]}, diary: {days:[...]} }
+  
+  function getTaskStreaks() {
+    try {
+      return JSON.parse(localStorage.getItem('taskStreaks') || '{"checkin":{"days":[]},"pomo":{"days":[]},"diary":{"days":[]}}');
+    } catch {
+      return {checkin:{days:[]}, pomo:{days:[]}, diary:{days:[]}};
+    }
+  }
+  
+  function saveTaskStreaks(d) {
+    try { localStorage.setItem('taskStreaks', JSON.stringify(d)); } catch {}
+  }
+  
+  // Returns true if this is the FIRST time this task is done today
+  // (so XP bonus only applies once per day per task)
+  function recordTaskActivity(taskKey) {
+    const data = getTaskStreaks();
+    if (!data[taskKey]) data[taskKey] = {days: []};
+    const today = todayStr();
+    const isFirst = !data[taskKey].days.includes(today);
+    
+    if (isFirst) {
+      data[taskKey].days.push(today);
+      if (data[taskKey].days.length > 400) {
+        data[taskKey].days = data[taskKey].days.slice(-400);
+      }
+      saveTaskStreaks(data);
+    }
+    return isFirst;
+  }
+  
+  function getTaskStreak(taskKey) {
+    const data = getTaskStreaks();
+    if (!data[taskKey]) return 0;
+    const days = data[taskKey].days;
+    let streak = 0;
+    let d = new Date();
+    if (!days.includes(todayStr())) d.setDate(d.getDate() - 1);
+    while (days.includes(dateStr(d))) {
+      streak++;
+      d.setDate(d.getDate() - 1);
+    }
+    return streak;
+  }
+  
+  // Streak multiplier (after recording today's activity)
+  function getStreakMultiplier(streak) {
+    if (streak >= 100) return { mult: 3.0, tier: '永恆光輝', icon: '✦' };
+    if (streak >= 60)  return { mult: 2.5, tier: '兩月傳說', icon: '💎' };
+    if (streak >= 30)  return { mult: 2.2, tier: '一月達人', icon: '🌟' };
+    if (streak >= 14)  return { mult: 1.8, tier: '兩週堅持', icon: '♡' };
+    if (streak >= 7)   return { mult: 1.5, tier: '一週達成', icon: '🌸' };
+    if (streak >= 3)   return { mult: 1.2, tier: '上手', icon: '✨' };
+    return { mult: 1.0, tier: '起步', icon: '·' };
+  }
+  
+  function recordActivity() {
+    const data = getStreakData();
+    const today = todayStr();
+    if (data.days.includes(today)) return data;
+    
+    data.days.push(today);
+    if (data.days.length > 400) data.days = data.days.slice(-400);
+    
+    // Calculate current streak
+    let streak = 0;
+    let d = new Date();
+    while (data.days.includes(dateStr(d))) {
+      streak++;
+      d.setDate(d.getDate() - 1);
+    }
+    data.current = streak;
+    if (streak > data.best) data.best = streak;
+    
+    saveStreakData(data);
+    return data;
+  }
+  
+  function calcCurrentStreak() {
+    const data = getStreakData();
+    let streak = 0;
+    let d = new Date();
+    // If today not done yet, start from yesterday
+    if (!data.days.includes(todayStr())) {
+      d.setDate(d.getDate() - 1);
+    }
+    while (data.days.includes(dateStr(d))) {
+      streak++;
+      d.setDate(d.getDate() - 1);
+    }
+    return streak;
+  }
+  
+  // ============================================
+  // LEVEL SYSTEM
+  // ============================================
+  // XP rules: check-in = 5 XP, pomodoro = 10 XP, diary = 3 XP
+  // Level threshold: lv n needs n*50 XP cumulative
+  const LEVEL_TITLES = [
+    '小苗', '嫩芽', '小花蕾', '初綻花', '盛開花',
+    '香氛花', '寶石花', '銀色花', '金色花', '鑽石花',
+    '星光花', '月光花', '彩虹花', '夢幻花', '永恆花',
+    '花仙子', '花精靈', '花女神', '宇宙花', '傳說 ♡'
+  ];
+  
+  function getXP() {
+    return parseInt(localStorage.getItem('userXP') || '0');
+  }
+  
+  function addXP(amount) {
+    const oldXP = getXP();
+    const oldLv = getLevelFromXP(oldXP);
+    const newXP = oldXP + amount;
+    localStorage.setItem('userXP', newXP);
+    const newLv = getLevelFromXP(newXP);
+    if (newLv > oldLv) {
+      showLevelUp(newLv);
+    }
+    return newXP;
+  }
+  
+  function getLevelFromXP(xp) {
+    // Lv n requires n^2 * 100 XP cumulative
+    // Lv 2 = 100, Lv 3 = 400, Lv 4 = 900, Lv 5 = 1600, Lv 10 = 10000
+    let lv = 1;
+    while (xp >= (lv + 1) * (lv + 1) * 100) {
+      lv++;
+      if (lv >= 50) return 50;
+    }
+    return lv;
+  }
+  
+  function getXPInLevel(xp) {
+    const lv = getLevelFromXP(xp);
+    const prevThreshold = lv * lv * 100;
+    const nextThreshold = (lv + 1) * (lv + 1) * 100;
+    return {
+      lv,
+      current: xp - prevThreshold,
+      needed: nextThreshold - prevThreshold,
+      total: xp,
+      nextAt: nextThreshold,
+    };
+  }
+  
+  function showLevelUp(lv) {
+    const toast = document.getElementById('level-toast');
+    const title = LEVEL_TITLES[Math.min(lv-1, LEVEL_TITLES.length-1)];
+    document.getElementById('level-toast-text').textContent = `恭喜升到 Lv.${lv} · ${title} ♡`;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+  
+  function renderLevel() {
+    const xp = getXP();
+    const { lv, current, needed } = getXPInLevel(xp);
+    document.getElementById('user-level').textContent = lv;
+    document.getElementById('level-title').textContent = LEVEL_TITLES[Math.min(lv-1, LEVEL_TITLES.length-1)];
+    document.getElementById('level-fill').style.width = (current/needed*100) + '%';
+    
+    // Render XP info panel
+    renderXPPanel(xp, lv, current, needed);
+  }
+  
+  function renderXPPanel(xp, lv, current, needed) {
+    document.getElementById('xp-current').textContent = xp.toLocaleString();
+    document.getElementById('xp-needed').textContent = (needed - current).toLocaleString();
+    
+    const tbody = document.getElementById('xp-table-body');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    
+    // Show 8 rows around current level: from max(2, lv-2) to lv+5
+    const startLv = Math.max(2, lv - 1);
+    const endLv = startLv + 7;
+    
+    for (let n = startLv; n <= endLv; n++) {
+      const cumul = n * n * 100;
+      const prevCumul = (n - 1) * (n - 1) * 100;
+      const delta = cumul - prevCumul;
+      const title = LEVEL_TITLES[Math.min(n - 1, LEVEL_TITLES.length - 1)];
+      
+      const tr = document.createElement('tr');
+      if (n === lv + 1) tr.classList.add('current-row');
+      tr.innerHTML = `
+        <td class="level-cell">Lv.${n}</td>
+        <td>${title}</td>
+        <td>${cumul.toLocaleString()}</td>
+        <td>+${delta.toLocaleString()}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+  }
+  
+  // Toggle XP info panel
+  document.getElementById('xp-info-toggle').addEventListener('click', () => {
+    const panel = document.getElementById('xp-info-panel');
+    const btn = document.getElementById('xp-info-toggle');
+    const isOpen = panel.classList.toggle('open');
+    btn.textContent = isOpen ? '✕ 收起 XP 算法' : 'ⓘ 查看 XP 算法 ＆ 等級表';
+    
+    // Auto-scroll to keep button in view when opening
+    if (isOpen) {
+      setTimeout(() => {
+        btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+  });
+  
+  // Bottom collapse button - smoothly closes and scrolls back to toggle
+  document.getElementById('xp-collapse-btn').addEventListener('click', () => {
+    const panel = document.getElementById('xp-info-panel');
+    const btn = document.getElementById('xp-info-toggle');
+    panel.classList.remove('open');
+    btn.textContent = 'ⓘ 查看 XP 算法 ＆ 等級表';
+    setTimeout(() => {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  });
+  
+  function renderStreak() {
+    document.getElementById('streak-days').textContent = calcCurrentStreak();
+    renderStreakBadges();
+  }
+  
+  // Render the 3 task streak badges next to the fire icon
+  function renderStreakBadges() {
+    const container = document.getElementById('streak-badges');
+    if (!container) return;
+    container.innerHTML = '';
+    
+    const tasks = [
+      { key: 'checkin', label: '打卡', emoji: '♡' },
+      { key: 'pomo',    label: '番茄', emoji: '🍅' },
+      { key: 'diary',   label: '日記', emoji: '📖' },
+    ];
+    
+    tasks.forEach(t => {
+      const streak = getTaskStreak(t.key);
+      const { mult } = getStreakMultiplier(streak);
+      const badge = document.createElement('span');
+      badge.className = 'streak-badge' + (mult <= 1 ? ' dim' : '');
+      badge.innerHTML = `<span class="badge-emoji">${t.emoji}</span> ${streak}d ×${mult.toFixed(1)}`;
+      badge.title = `${t.label} 連續 ${streak} 天 · 倍率 ×${mult.toFixed(1)}`;
+      container.appendChild(badge);
+    });
+  }
+  
+  // Show streak bonus toast (top right, slides in)
+  function showStreakBonus(taskKey, streak, mult, xpAwarded, icon, tier) {
+    const toast = document.getElementById('streak-toast');
+    if (!toast) return;
+    
+    const taskNames = { checkin: '打卡', pomo: '番茄鐘', diary: '日記' };
+    const taskIcons = { checkin: '♡', pomo: '🍅', diary: '📖' };
+    
+    document.getElementById('streak-toast-icon').textContent = taskIcons[taskKey] || '✨';
+    document.getElementById('streak-toast-title').textContent = 
+      `${taskNames[taskKey]} ${streak} 天連續！`;
+    document.getElementById('streak-toast-sub').textContent = 
+      `${icon} ${tier} · ×${mult.toFixed(1)} 倍率加成`;
+    document.getElementById('streak-toast-bonus').textContent = `+${xpAwarded}`;
+    
+    toast.classList.add('show');
+    clearTimeout(showStreakBonus._t);
+    showStreakBonus._t = setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+  
+  // Render multiplier table inside XP info panel
+  function renderMultTable() {
+    const tbody = document.getElementById('mult-table-body');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    
+    const tiers = [
+      { min: 1,   max: 2,   mult: 1.0, tier: '起步',     icon: '·' },
+      { min: 3,   max: 6,   mult: 1.2, tier: '上手',     icon: '✨' },
+      { min: 7,   max: 13,  mult: 1.5, tier: '一週達成', icon: '🌸' },
+      { min: 14,  max: 29,  mult: 1.8, tier: '兩週堅持', icon: '♡' },
+      { min: 30,  max: 59,  mult: 2.2, tier: '一月達人', icon: '🌟' },
+      { min: 60,  max: 99,  mult: 2.5, tier: '兩月傳說', icon: '💎' },
+      { min: 100, max: 999, mult: 3.0, tier: '永恆光輝', icon: '✦' },
+    ];
+    
+    // Find the user's current highest tier (across all 3 tasks)
+    const maxStreak = Math.max(
+      getTaskStreak('checkin'),
+      getTaskStreak('pomo'),
+      getTaskStreak('diary')
+    );
+    
+    tiers.forEach(t => {
+      const tr = document.createElement('tr');
+      const inTier = (maxStreak >= t.min && (t.max === 999 || maxStreak <= t.max));
+      if (inTier) tr.classList.add('tier-current');
+      const range = t.max === 999 ? `${t.min}+ 天` : `${t.min}-${t.max} 天`;
+      tr.innerHTML = `
+        <td class="icon-cell">${t.icon}</td>
+        <td>${range}</td>
+        <td>${t.tier}</td>
+        <td class="mult-cell">×${t.mult.toFixed(1)}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+  
+  // ============================================
+  // POMODORO
+  // ============================================
+  let pomoState = {
+    mode: 'focus',
+    totalSec: 25 * 60,
+    remainSec: 25 * 60,
+    running: false,
+    interval: null,
+    autoFlow: true,  // 自動流程預設開啟
+  };
+  
+  function getPomoData() {
+    try {
+      return JSON.parse(localStorage.getItem('pomoData') || '{}');
+    } catch { return {}; }
+  }
+  
+  function savePomo() {
+    const data = getPomoData();
+    const t = todayStr();
+    data[t] = (data[t] || 0) + 1;
+    // Keep last 60 days
+    const keys = Object.keys(data).sort();
+    while (keys.length > 60) delete data[keys.shift()];
+    localStorage.setItem('pomoData', JSON.stringify(data));
+  }
+  
+  function getPomoToday() {
+    return getPomoData()[todayStr()] || 0;
+  }
+  
+  function getPomoWeek() {
+    const data = getPomoData();
+    const now = new Date();
+    const day = now.getDay();
+    const diff = day === 0 ? -6 : 1 - day;
+    const monday = new Date(now);
+    monday.setDate(now.getDate() + diff);
+    monday.setHours(0, 0, 0, 0);
+    
+    let total = 0;
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(monday);
+      d.setDate(monday.getDate() + i);
+      total += data[dateStr(d)] || 0;
+    }
+    return total;
+  }
+  
+  function fmtPomo(sec) {
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }
+  
+  function setPomoMode(mode, min) {
+    pomoState.mode = mode;
+    pomoState.totalSec = min * 60;
+    pomoState.remainSec = min * 60;
+    pomoState.running = false;
+    if (pomoState.interval) clearInterval(pomoState.interval);
+    document.getElementById('pomo-start').textContent = 'START ♡';
+    document.getElementById('pomo-status').textContent = 
+      mode === 'focus' ? '準備專注 ♡' : (mode === 'short' ? '小憩一下 🌸' : '好好放鬆 ✿');
+    updatePomoDisplay();
+  }
+  
+  function updatePomoDisplay() {
+    document.getElementById('pomo-time').textContent = fmtPomo(pomoState.remainSec);
+    const circumference = 2 * Math.PI * 105;
+    const pct = pomoState.remainSec / pomoState.totalSec;
+    const dash = circumference * pct;
+    document.getElementById('pomo-fill').setAttribute('stroke-dasharray', `${dash} ${circumference}`);
+  }
+  
+  // Auto-flow: focus(25) → short(5) → focus(25) → short(5) → focus(25) → short(5) → focus(25) → long(15) → repeat
+  // After every 4 focus pomodoros = one long break
+  function getCycleCount() {
+    return parseInt(localStorage.getItem('pomoCycleCount') || '0');
+  }
+  
+  function setCycleCount(n) {
+    localStorage.setItem('pomoCycleCount', n);
+  }
+  
+  function nextAutoMode() {
+    if (pomoState.mode === 'focus') {
+      const newCount = getCycleCount() + 1;
+      setCycleCount(newCount);
+      // After 4 focus sessions, take a long break
+      if (newCount % 4 === 0) {
+        return { mode: 'long', min: 15 };
+      }
+      return { mode: 'short', min: 5 };
+    }
+    // After any break → back to focus
+    return { mode: 'focus', min: 25 };
+  }
+  
+  function pomoTick() {
+    if (pomoState.remainSec > 0) {
+      pomoState.remainSec--;
+      updatePomoDisplay();
+      const original = '♡ 我的精緻時刻表 ♡';
+      document.title = `${fmtPomo(pomoState.remainSec)} · ${original}`;
+    } else {
+      // Done!
+      clearInterval(pomoState.interval);
+      pomoState.running = false;
+      document.title = '♡ 我的精緻時刻表 ♡';
+      
+      const finishedMode = pomoState.mode;
+      
+      if (finishedMode === 'focus') {
+        savePomo();
+        // First pomodoro of the day → streak bonus; subsequent pomodoros → base XP
+        const isFirst = recordTaskActivity('pomo');
+        if (isFirst) {
+          const streak = getTaskStreak('pomo');
+          const { mult, tier, icon } = getStreakMultiplier(streak);
+          const bonusXP = Math.round(15 * mult);
+          addXP(bonusXP);
+          if (mult > 1) {
+            showStreakBonus('pomo', streak, mult, bonusXP, icon, tier);
+          }
+        } else {
+          addXP(15);  // 同日後續番茄 +15 基礎
+        }
+        recordActivity();
+      }
+      playDing();
+      renderAll();
+      
+      // AUTO FLOW: switch to next mode and start automatically (only if auto mode is on)
+      if (pomoState.autoFlow) {
+        const next = nextAutoMode();
+        const cycle = getCycleCount();
+        const inCycle = ((cycle - 1) % 4) + 1;  // 1, 2, 3, 4
+        
+        // Switch mode UI
+        document.querySelectorAll('.pomo-mode').forEach(b => b.classList.remove('active'));
+        const nextBtn = document.querySelector(`.pomo-mode[data-mode="${next.mode}"]`);
+        if (nextBtn) nextBtn.classList.add('active');
+        
+        pomoState.mode = next.mode;
+        pomoState.totalSec = next.min * 60;
+        pomoState.remainSec = next.min * 60;
+        updatePomoDisplay();
+        
+        let statusText;
+        if (finishedMode === 'focus') {
+          if (next.mode === 'long') {
+            statusText = `🎉 完成 ${cycle} 顆！長休 15 分鐘 ✨`;
+          } else {
+            statusText = `✨ ${inCycle}/4 完成！短休 5 分鐘 🌸`;
+          }
+        } else if (finishedMode === 'long') {
+          statusText = '🌟 重新開始！第 1 顆番茄 ♡';
+        } else {
+          statusText = `休息結束！第 ${inCycle + 1}/4 顆 ♡`;
+        }
+        document.getElementById('pomo-status').textContent = statusText;
+        
+        // Auto-start next session after 1.5 second pause
+        setTimeout(() => {
+          if (!pomoState.running && pomoState.autoFlow) {
+            pomoState.running = true;
+            pomoState.interval = setInterval(pomoTick, 1000);
+            document.getElementById('pomo-start').textContent = '暫停';
+            document.getElementById('pomo-status').textContent = 
+              pomoState.mode === 'focus' ? '專注中... ✨' : '休息中... 🌸';
+          }
+        }, 1500);
+      } else {
+        // Manual mode
+        if (finishedMode === 'focus') {
+          document.getElementById('pomo-status').textContent = '完成一顆番茄 ✨';
+        } else {
+          document.getElementById('pomo-status').textContent = '休息結束！';
+        }
+        document.getElementById('pomo-start').textContent = 'START ♡';
+      }
+    }
+  }
+  
+  function playDing() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = 880;
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.8);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.8);
+      // Second note
+      setTimeout(() => {
+        const o2 = ctx.createOscillator();
+        const g2 = ctx.createGain();
+        o2.connect(g2);
+        g2.connect(ctx.destination);
+        o2.frequency.value = 1320;
+        o2.type = 'sine';
+        g2.gain.setValueAtTime(0.3, ctx.currentTime);
+        g2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.8);
+        o2.start();
+        o2.stop(ctx.currentTime + 0.8);
+      }, 200);
+    } catch (e) {}
+  }
+  
+  function renderPomoStats() {
+    document.getElementById('pomo-today').textContent = getPomoToday();
+    document.getElementById('pomo-week').textContent = getPomoWeek();
+    document.getElementById('today-pomos').textContent = getPomoToday();
+    renderCycleDots();
+  }
+  
+  function renderCycleDots() {
+    const cycle = getCycleCount();
+    const inCycle = cycle % 4;  // 0 = 剛完成一輪 / 全空, 1-3 = 中間, 0-after-multiple-of-4 = 全滿
+    const completed = (cycle === 0) ? 0 : (inCycle === 0 ? 4 : inCycle);
+    const isLongBreak = (pomoState.mode === 'long' && pomoState.running);
+    const isFocusing = (pomoState.mode === 'focus' && pomoState.running);
+    
+    document.querySelectorAll('.cycle-dot').forEach(dot => {
+      const i = parseInt(dot.dataset.i);
+      dot.classList.remove('done', 'current');
+      if (i <= completed) {
+        dot.classList.add('done');
+      } else if (i === completed + 1 && isFocusing) {
+        dot.classList.add('current');
+      }
+    });
+    
+    const longEl = document.getElementById('cycle-long');
+    longEl.classList.toggle('active', isLongBreak || (completed === 4 && !isFocusing));
+  }
+  
+  // Auto-flow toggle
+  document.getElementById('auto-toggle').addEventListener('click', () => {
+    pomoState.autoFlow = !pomoState.autoFlow;
+    document.getElementById('auto-toggle').classList.toggle('on', pomoState.autoFlow);
+    localStorage.setItem('pomoAutoFlow', pomoState.autoFlow ? '1' : '0');
+  });
+  
+  // Restore auto-flow preference
+  const savedAuto = localStorage.getItem('pomoAutoFlow');
+  if (savedAuto === '0') {
+    pomoState.autoFlow = false;
+    document.getElementById('auto-toggle').classList.remove('on');
+  }
+  
+  // Skip current session (no XP, no tomato count, but auto-starts next)
+  document.getElementById('pomo-skip').addEventListener('click', () => {
+    if (!confirm('確定要略過這個階段嗎？\n（不會獲得 XP 也不算入番茄統計）♡')) return;
+    if (pomoState.interval) clearInterval(pomoState.interval);
+    pomoState.running = false;
+    document.title = '♡ 我的精緻時刻表 ♡';
+    playDing();
+    
+    if (pomoState.autoFlow) {
+      // Switch to next mode (without XP/tomato) and AUTO-START it
+      const next = nextAutoMode();
+      document.querySelectorAll('.pomo-mode').forEach(b => b.classList.remove('active'));
+      const nextBtn = document.querySelector(`.pomo-mode[data-mode="${next.mode}"]`);
+      if (nextBtn) nextBtn.classList.add('active');
+      pomoState.mode = next.mode;
+      pomoState.totalSec = next.min * 60;
+      pomoState.remainSec = next.min * 60;
+      updatePomoDisplay();
+      document.getElementById('pomo-status').textContent = '已略過 · 下一階段啟動中...';
+      
+      // Auto-start the next session after 1 second
+      setTimeout(() => {
+        pomoState.running = true;
+        pomoState.interval = setInterval(pomoTick, 1000);
+        document.getElementById('pomo-start').textContent = '暫停';
+        document.getElementById('pomo-status').textContent = 
+          pomoState.mode === 'focus' ? '專注中... ✨' : '休息中... 🌸';
+        renderAll();
+      }, 1000);
+    } else {
+      // Manual mode: just reset to current mode's full time
+      const activeBtn = document.querySelector('.pomo-mode.active');
+      setPomoMode(activeBtn.dataset.mode, parseInt(activeBtn.dataset.min));
+      document.getElementById('pomo-status').textContent = '已略過 · 按 START 繼續';
+    }
+    renderAll();
+  });
+  
+  // Pomodoro events
+  document.querySelectorAll('.pomo-mode').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pomo-mode').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      setPomoMode(btn.dataset.mode, parseInt(btn.dataset.min));
+    });
+  });
+  
+  document.getElementById('pomo-start').addEventListener('click', () => {
+    if (pomoState.running) {
+      // Pause
+      clearInterval(pomoState.interval);
+      pomoState.running = false;
+      document.getElementById('pomo-start').textContent = '繼續 ♡';
+      document.getElementById('pomo-status').textContent = '已暫停';
+    } else {
+      // Start / resume
+      pomoState.running = true;
+      pomoState.interval = setInterval(pomoTick, 1000);
+      document.getElementById('pomo-start').textContent = '暫停';
+      document.getElementById('pomo-status').textContent = 
+        pomoState.mode === 'focus' ? '專注中... ✨' : '休息中... 🌸';
+    }
+  });
+  
+  document.getElementById('pomo-reset').addEventListener('click', () => {
+    if (pomoState.interval) clearInterval(pomoState.interval);
+    const activeBtn = document.querySelector('.pomo-mode.active');
+    setPomoMode(activeBtn.dataset.mode, parseInt(activeBtn.dataset.min));
+  });
+  
+  // ============================================
+  // DIARY
+  // ============================================
+  function getDiary() {
+    try {
+      return JSON.parse(localStorage.getItem('studyDiary') || '[]');
+    } catch { return []; }
+  }
+  
+  function saveDiary(arr) {
+    localStorage.setItem('studyDiary', JSON.stringify(arr));
+  }
+  
+  let selectedMood = '';
+  
+  function renderDiary() {
+    const list = document.getElementById('diary-list');
+    const entries = getDiary().slice().reverse();
+    list.innerHTML = '';
+    
+    if (entries.length === 0) {
+      list.innerHTML = '<div class="diary-empty">還沒有日記，寫下今天的第一筆吧 ♡</div>';
+      return;
+    }
+    
+    entries.forEach((e, idx) => {
+      const realIdx = getDiary().length - 1 - idx;
+      const li = document.createElement('li');
+      li.className = 'diary-entry';
+      li.innerHTML = `
+        <div class="diary-mood">${e.mood || '✨'}</div>
+        <div class="diary-content">
+          <div class="diary-date">${e.date}</div>
+          <div class="diary-text">${escapeHtml(e.text)}</div>
+        </div>
+        <button class="diary-delete" data-idx="${realIdx}" title="刪除">✕</button>
+      `;
+      list.appendChild(li);
+    });
+    
+    list.querySelectorAll('.diary-delete').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const arr = getDiary();
+        arr.splice(parseInt(btn.dataset.idx), 1);
+        saveDiary(arr);
+        renderDiary();
+      });
+    });
+  }
+  
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+    }[c]));
+  }
+  
+  document.querySelectorAll('.mood-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedMood = btn.dataset.mood;
+    });
+  });
+  
+  document.getElementById('save-diary').addEventListener('click', () => {
+    const text = document.getElementById('diary-input').value.trim();
+    if (!text) {
+      alert('寫一句話再儲存喔 ♡');
+      return;
+    }
+    const now = new Date();
+    const dateStr2 = `${now.getMonth()+1}/${now.getDate()} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    
+    const arr = getDiary();
+    arr.push({
+      date: dateStr2,
+      text: text,
+      mood: selectedMood || '✨',
+      timestamp: now.getTime(),
+    });
+    if (arr.length > 100) arr.shift();
+    saveDiary(arr);
+    
+    document.getElementById('diary-input').value = '';
+    document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+    selectedMood = '';
+    
+    // Streak bonus for diary
+    const isFirst = recordTaskActivity('diary');
+    if (isFirst) {
+      const streak = getTaskStreak('diary');
+      const { mult, tier, icon } = getStreakMultiplier(streak);
+      const bonusXP = Math.round(3 * mult);
+      addXP(bonusXP);
+      if (mult > 1) showStreakBonus('diary', streak, mult, bonusXP, icon, tier);
+    } else {
+      addXP(3);
+    }
+    recordActivity();
+    renderDiary();
+    renderAll();
+  });
+  
+  // ============================================
+  // HOOK INTO CHECK-IN: gain XP & streak
+  // ============================================
+  const _origToggleCheck = toggleCheck;
+  toggleCheck = function(day, start) {
+    const wasChecked = isChecked(day, start);
+    const result = _origToggleCheck(day, start);
+    if (!wasChecked && result) {
+      // First check-in of today gets streak multiplier; subsequent ones get base XP
+      const isFirst = recordTaskActivity('checkin');
+      if (isFirst) {
+        const streak = getTaskStreak('checkin');
+        const { mult, tier, icon } = getStreakMultiplier(streak);
+        const bonusXP = Math.round(5 * mult);
+        addXP(bonusXP);
+        if (mult > 1) showStreakBonus('checkin', streak, mult, bonusXP, icon, tier);
+      } else {
+        addXP(5);
+      }
+      recordActivity();
+      renderAll();
+    }
+    return result;
+  };
+  
+  function renderAll() {
+    renderStreak();
+    renderLevel();
+    renderPomoStats();
+    renderMultTable();
+  }
+  
+  // Init new features
+  showQuote();
+  setPomoMode('focus', 25);
+  renderDiary();
+  renderAll();
   
   initDecorations();
   renderDayTabs();
