@@ -3694,115 +3694,28 @@
     return data;
   }
   
-  // Apply a data object back to localStorage
+  // Wipe all sync-able localStorage keys (used at login/logout transitions)
+  function wipeLocalSyncData() {
+    isApplyingCloud = true;
+    SYNC_KEYS.forEach(k => localStorage.removeItem(k));
+    isApplyingCloud = false;
+  }
+  
+  // Apply a data object back to localStorage (overwriting existing values)
   function applyDataToLocal(data) {
-    if (!data) return;
     isApplyingCloud = true;
     SYNC_KEYS.forEach(k => {
-      if (data[k] !== undefined && data[k] !== null) {
+      if (data && data[k] !== undefined && data[k] !== null) {
         localStorage.setItem(k, data[k]);
+      } else {
+        localStorage.removeItem(k);
       }
     });
     isApplyingCloud = false;
   }
   
-  // Smart merge: take the "richer" value for each key
-  // - For days arrays / xp / counters: combine sets / take max
-  // - For diary: merge by timestamp
-  function mergeData(local, cloud) {
-    const merged = { ...local };
-    
-    // Helper to safely parse JSON
-    const tryParse = (s) => { try { return JSON.parse(s); } catch { return null; } };
-    
-    SYNC_KEYS.forEach(k => {
-      const lv = local[k];
-      const cv = cloud[k];
-      if (lv === undefined && cv === undefined) return;
-      if (lv === undefined) { merged[k] = cv; return; }
-      if (cv === undefined) { merged[k] = lv; return; }
-      if (lv === cv) { merged[k] = lv; return; }
-      
-      const lp = tryParse(lv);
-      const cp = tryParse(cv);
-      
-      // Numeric-string keys (XP, cycle count) → take max
-      if (k === 'userXP' || k === 'pomoCycleCount') {
-        merged[k] = String(Math.max(parseInt(lv) || 0, parseInt(cv) || 0));
-        return;
-      }
-      
-      // Auto-flow toggle: prefer the most recently saved (cloud, since user logged in)
-      if (k === 'pomoAutoFlow') {
-        merged[k] = cv;
-        return;
-      }
-      
-      // streakData: merge days arrays (union)
-      if (k === 'streakData' && lp && cp) {
-        const days = Array.from(new Set([...(lp.days || []), ...(cp.days || [])])).sort();
-        const best = Math.max(lp.best || 0, cp.best || 0);
-        merged[k] = JSON.stringify({ days, current: 0, best });
-        return;
-      }
-      
-      // taskStreaks: merge each task's days
-      if (k === 'taskStreaks' && lp && cp) {
-        const tasks = ['checkin', 'pomo', 'diary'];
-        const result = {};
-        tasks.forEach(t => {
-          const ld = (lp[t] && lp[t].days) || [];
-          const cd = (cp[t] && cp[t].days) || [];
-          result[t] = { days: Array.from(new Set([...ld, ...cd])).sort() };
-        });
-        merged[k] = JSON.stringify(result);
-        return;
-      }
-      
-      // scheduleCheckIns / pomoData: merge by week / day key
-      if ((k === 'scheduleCheckIns' || k === 'pomoData') && lp && cp) {
-        const result = { ...lp };
-        Object.keys(cp).forEach(weekKey => {
-          if (typeof cp[weekKey] === 'object' && typeof result[weekKey] === 'object') {
-            // merge inner objects (any true wins for checkins, sum for pomos? No, take max)
-            const inner = { ...result[weekKey] };
-            Object.keys(cp[weekKey]).forEach(innerK => {
-              if (typeof cp[weekKey][innerK] === 'number') {
-                inner[innerK] = Math.max(inner[innerK] || 0, cp[weekKey][innerK]);
-              } else {
-                inner[innerK] = inner[innerK] || cp[weekKey][innerK];
-              }
-            });
-            result[weekKey] = inner;
-          } else {
-            result[weekKey] = result[weekKey] !== undefined ? result[weekKey] : cp[weekKey];
-          }
-        });
-        merged[k] = JSON.stringify(result);
-        return;
-      }
-      
-      // studyDiary: merge by timestamp (deduped)
-      if (k === 'studyDiary' && Array.isArray(lp) && Array.isArray(cp)) {
-        const seen = new Set();
-        const all = [...lp, ...cp].filter(e => {
-          const id = e.timestamp || (e.date + '|' + e.text);
-          if (seen.has(id)) return false;
-          seen.add(id);
-          return true;
-        }).sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-        merged[k] = JSON.stringify(all.slice(-100));
-        return;
-      }
-      
-      // Default: cloud wins
-      merged[k] = cv;
-    });
-    
-    return merged;
-  }
-  
-  // Push current local data to cloud (debounced)
+  // Push current local data to cloud (debounced 0.8s)
+  // Only runs when logged in. Local IS the working copy; cloud mirrors it.
   function pushToCloud() {
     if (!currentUser || isApplyingCloud) return;
     clearTimeout(pushTimer);
@@ -3815,7 +3728,7 @@
         await window.fb.setDoc(ref, {
           data: data,
           updatedAt: Date.now(),
-        }, { merge: true });
+        }, { merge: false });  // overwrite – cloud === local exactly
         updateSyncUI(currentUser, '☁ 已同步 ✓', 'synced');
       } catch (err) {
         console.error('Push error:', err);
@@ -3824,7 +3737,7 @@
     }, 800);
   }
   
-  // Hook localStorage.setItem to auto-push when data changes
+  // Hook localStorage.setItem so any write auto-pushes to cloud (when logged in)
   const _origSetItem = localStorage.setItem.bind(localStorage);
   localStorage.setItem = function(key, value) {
     _origSetItem(key, value);
@@ -3833,46 +3746,42 @@
     }
   };
   
-  // Pull from cloud and merge into local
-  async function pullAndMerge() {
+  // Re-render the whole UI after data change
+  function rerenderAfterDataChange() {
+    renderAll();
+    renderDiary();
+    const dayToShow = viewingDay !== null ? viewingDay : new Date().getDay();
+    renderScheduleList(dayToShow, getCurrentInfo());
+  }
+  
+  // Pull cloud data → REPLACE local entirely. Used after login.
+  async function pullFromCloud() {
     if (!currentUser) return;
     try {
       updateSyncUI(currentUser, '☁ 讀取中...', 'syncing');
       const ref = window.fb.doc(window.fb.db, 'users', currentUser.uid);
       const snap = await window.fb.getDoc(ref);
       
-      const local = gatherLocalData();
       if (snap.exists() && snap.data().data) {
-        const cloud = snap.data().data;
-        const merged = mergeData(local, cloud);
-        applyDataToLocal(merged);
-        // Push merged result back
-        await window.fb.setDoc(ref, { data: merged, updatedAt: Date.now() }, { merge: true });
+        // Cloud has data → use it
+        applyDataToLocal(snap.data().data);
       } else {
-        // First time login: push local up
-        await window.fb.setDoc(ref, { data: local, updatedAt: Date.now() }, { merge: true });
+        // First time logging in EVER on this account → start fresh in cloud
+        // (local was already wiped before this function ran)
+        await window.fb.setDoc(ref, { data: {}, updatedAt: Date.now() });
       }
       
-      // Re-render UI
-      renderAll();
-      renderDiary();
-      const dayToShow = viewingDay !== null ? viewingDay : new Date().getDay();
-      renderScheduleList(dayToShow, getCurrentInfo());
-      
+      rerenderAfterDataChange();
       updateSyncUI(currentUser, '☁ 已同步 ✓', 'synced');
       
-      // Subscribe to real-time changes
+      // Subscribe to real-time changes (multi-device sync)
       if (cloudUnsubscribe) cloudUnsubscribe();
       cloudUnsubscribe = window.fb.onSnapshot(ref, (snap) => {
         if (!snap.exists()) return;
         const data = snap.data().data;
         if (!data) return;
-        // Only apply if remote update is newer (cheap check: just re-apply)
         applyDataToLocal(data);
-        renderAll();
-        renderDiary();
-        const dayToShow = viewingDay !== null ? viewingDay : new Date().getDay();
-        renderScheduleList(dayToShow, getCurrentInfo());
+        rerenderAfterDataChange();
       });
     } catch (err) {
       console.error('Pull error:', err);
@@ -3882,11 +3791,28 @@
   
   // ============ AUTH HANDLERS ============
   whenFirebaseReady(() => {
-    // Login button
+    // LOGIN: warns if local data exists, then wipes local + pulls cloud
     document.getElementById('sync-login-btn').addEventListener('click', async () => {
+      // Check if there is meaningful local data first
+      const local = gatherLocalData();
+      const hasLocalData = Object.keys(local).length > 0;
+      
+      if (hasLocalData) {
+        const ok = confirm(
+          '⚠️ 登入提醒\n\n' +
+          '登入後將切換為「雲端模式」：\n' +
+          '✓ 從雲端讀取你的紀錄\n' +
+          '✗ 此瀏覽器目前的本機紀錄會被清空\n\n' +
+          '若這是你第一次登入此帳號，雲端會是空的，' +
+          '本機紀錄將不會自動上傳（保險起見）。\n\n' +
+          '確定要登入嗎？♡'
+        );
+        if (!ok) return;
+      }
+      
       try {
         await window.fb.signInWithPopup(window.fb.auth, window.fb.provider);
-        // onAuthStateChanged will handle the rest
+        // onAuthStateChanged below handles the actual data swap
       } catch (err) {
         if (err.code === 'auth/popup-closed-by-user' || 
             err.code === 'auth/cancelled-popup-request') return;
@@ -3895,25 +3821,46 @@
       }
     });
     
-    // Logout button
+    // LOGOUT: warn that local data will be wiped (cloud is unaffected)
     document.getElementById('sync-logout-btn').addEventListener('click', async () => {
-      if (!confirm('確定要登出嗎？♡\n\n資料會留在雲端，下次登入還能讀回來。\n本機的資料不會被刪除。')) return;
+      const ok = confirm(
+        '確定要登出嗎？♡\n\n' +
+        '✓ 雲端紀錄會完整保留\n' +
+        '✗ 本機（這個瀏覽器）的資料會清空\n' +
+        '✓ 下次登入同一個 Google 帳號就能讀回來\n\n' +
+        '確定登出？'
+      );
+      if (!ok) return;
+      
       try {
         if (cloudUnsubscribe) { cloudUnsubscribe(); cloudUnsubscribe = null; }
+        clearTimeout(pushTimer);
         await window.fb.signOut(window.fb.auth);
+        // onAuthStateChanged → user=null → wipe local
       } catch (err) {
         console.error('Logout error:', err);
       }
     });
     
-    // Listen to auth state
+    // AUTH STATE LISTENER: this is where the bucket-swap happens
     window.fb.onAuthStateChanged(window.fb.auth, async (user) => {
+      const wasLoggedIn = !!currentUser;
       currentUser = user;
+      
       if (user) {
+        // → Just logged in
         updateSyncUI(user, '☁ 連線中...', 'syncing');
-        await pullAndMerge();
+        wipeLocalSyncData();        // Clear local first
+        rerenderAfterDataChange();  // Show cleared state briefly
+        await pullFromCloud();      // Then load cloud (or empty if first time)
       } else {
+        // → Just logged out (or initial pageload while not logged in)
         if (cloudUnsubscribe) { cloudUnsubscribe(); cloudUnsubscribe = null; }
+        if (wasLoggedIn) {
+          // Real logout (not initial load) → wipe local
+          wipeLocalSyncData();
+          rerenderAfterDataChange();
+        }
         updateSyncUI(null);
       }
     });
