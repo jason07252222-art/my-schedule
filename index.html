@@ -1802,7 +1802,153 @@
     letter-spacing: 0.5em;
     font-size: 0.9rem;
   }
+  
+  /* ============ FIREBASE / SYNC UI ============ */
+  .sync-strip {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  
+  .sync-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    border-radius: 100px;
+    padding: 10px 22px 10px 14px;
+    box-shadow: 0 10px 26px rgba(149, 117, 205, 0.18);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s;
+  }
+  
+  .sync-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(149, 117, 205, 0.25);
+  }
+  
+  .sync-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .sync-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .sync-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  
+  .sync-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--plum);
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .sync-status {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem;
+    color: var(--pink-deep);
+    font-style: italic;
+    letter-spacing: 0.05em;
+  }
+  
+  .sync-status.syncing { color: #b8860b; }
+  .sync-status.synced { color: #2e7d32; }
+  
+  .sync-btn {
+    padding: 7px 18px;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.05em;
+  }
+  
+  .sync-btn.login {
+    background: linear-gradient(135deg, var(--pink-deep), var(--pink-rose));
+    color: white;
+    box-shadow: 0 4px 12px rgba(149, 117, 205, 0.3);
+  }
+  
+  .sync-btn.login:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(149, 117, 205, 0.4);
+  }
+  
+  .sync-btn.logout {
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--pink-wine);
+    border: 1px solid rgba(149, 117, 205, 0.3);
+  }
+  
+  .sync-btn.logout:hover {
+    background: rgba(245, 240, 255, 0.9);
+  }
+  
+  .sync-google-icon {
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
 </style>
+
+<!-- Firebase SDK (v10 compat for browser) -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { 
+    getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged 
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { 
+    getFirestore, doc, setDoc, getDoc, onSnapshot 
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2dJu5hoDpLa98icA4MWZYqDuTgX5uu7Y",
+    authDomain: "clandaar.firebaseapp.com",
+    projectId: "clandaar",
+    storageBucket: "clandaar.firebasestorage.app",
+    messagingSenderId: "825368033429",
+    appId: "1:825368033429:web:982f4a5ea419db3ed8039c",
+    measurementId: "G-2XL2Z1XXBN"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const provider = new GoogleAuthProvider();
+  
+  // Expose to global so the rest of script can use them
+  window.fb = { auth, db, provider, signInWithPopup, signOut, onAuthStateChanged, doc, setDoc, getDoc, onSnapshot };
+  window.dispatchEvent(new Event('firebase-ready'));
+</script>
+
 </head>
 <body>
 
@@ -1818,7 +1964,7 @@
       <img src="kitty.png" alt="Kitty">
     </div>
     
-    <h1>我的時刻表<span class="flourish"></span>
+    <h1>我的時刻表<span class="flourish">
     <div class="subtitle">~ Mon Petit Calendrier ~</div>
     
     <div class="clock-display">
@@ -1826,6 +1972,24 @@
       <div class="current-date" id="date">Loading</div>
     </div>
   </header>
+  
+  <!-- SYNC / LOGIN CARD -->
+  <div class="sync-strip">
+    <div class="sync-card" id="sync-card">
+      <div class="sync-avatar" id="sync-avatar">☁</div>
+      <div class="sync-info">
+        <div class="sync-name" id="sync-name">未登入</div>
+        <div class="sync-status" id="sync-status">本機儲存模式</div>
+      </div>
+      <button class="sync-btn login" id="sync-login-btn">
+        <svg class="sync-google-icon" viewBox="0 0 48 48">
+          <path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.7 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/>
+        </svg>
+        Google 登入
+      </button>
+      <button class="sync-btn logout" id="sync-logout-btn" style="display:none;">登出</button>
+    </div>
+  </div>
   
   <!-- STREAK + LEVEL STRIP -->
   <div class="top-strip">
@@ -2009,6 +2173,7 @@
       <button class="pomo-btn primary" id="pomo-start">START ♡</button>
       <button class="pomo-btn secondary" id="pomo-reset">重設</button>
       <button class="pomo-btn secondary" id="pomo-skip">略過 ▸</button>
+      <button class="pomo-btn secondary" id="pomo-restart">🔄 從頭</button>
     </div>
     
     <div class="pomo-cycle" id="pomo-cycle">
@@ -2962,8 +3127,21 @@
     remainSec: 25 * 60,
     running: false,
     interval: null,
-    autoFlow: true,  // 自動流程預設開啟
+    nextPhaseTimeout: null,  // 自動流程過渡時的 setTimeout ID（用於可清除）
+    autoFlow: true,
   };
+  
+  function clearPomoTimers() {
+    if (pomoState.interval) {
+      clearInterval(pomoState.interval);
+      pomoState.interval = null;
+    }
+    if (pomoState.nextPhaseTimeout) {
+      clearTimeout(pomoState.nextPhaseTimeout);
+      pomoState.nextPhaseTimeout = null;
+    }
+    pomoState.running = false;
+  }
   
   function getPomoData() {
     try {
@@ -3010,11 +3188,10 @@
   }
   
   function setPomoMode(mode, min) {
+    clearPomoTimers();  // 清除所有計時器（包含過渡 setTimeout）
     pomoState.mode = mode;
     pomoState.totalSec = min * 60;
     pomoState.remainSec = min * 60;
-    pomoState.running = false;
-    if (pomoState.interval) clearInterval(pomoState.interval);
     document.title = '♡ 我的精緻時刻表 ♡';
     document.getElementById('pomo-start').textContent = 'START ♡';
     document.getElementById('pomo-status').textContent = 
@@ -3120,7 +3297,8 @@
         document.getElementById('pomo-status').textContent = statusText;
         
         // Auto-start next session after 1.5 second pause
-        setTimeout(() => {
+        pomoState.nextPhaseTimeout = setTimeout(() => {
+          pomoState.nextPhaseTimeout = null;
           if (!pomoState.running && pomoState.autoFlow) {
             pomoState.running = true;
             pomoState.interval = setInterval(pomoTick, 1000);
@@ -3215,8 +3393,7 @@
   // Skip current session (no XP, no tomato count, but auto-starts next)
   document.getElementById('pomo-skip').addEventListener('click', () => {
     if (!confirm('確定要略過這個階段嗎？\n（不會獲得 XP 也不算入番茄統計）♡')) return;
-    if (pomoState.interval) clearInterval(pomoState.interval);
-    pomoState.running = false;
+    clearPomoTimers();  // 修 BUG：同時清除過渡用的 setTimeout
     document.title = '♡ 我的精緻時刻表 ♡';
     playDing();
     
@@ -3233,7 +3410,8 @@
       document.getElementById('pomo-status').textContent = '已略過 · 下一階段啟動中...';
       
       // Auto-start the next session after 1 second
-      setTimeout(() => {
+      pomoState.nextPhaseTimeout = setTimeout(() => {
+        pomoState.nextPhaseTimeout = null;
         pomoState.running = true;
         pomoState.interval = setInterval(pomoTick, 1000);
         document.getElementById('pomo-start').textContent = '暫停';
@@ -3262,12 +3440,17 @@
   document.getElementById('pomo-start').addEventListener('click', () => {
     if (pomoState.running) {
       // Pause
-      clearInterval(pomoState.interval);
+      if (pomoState.interval) clearInterval(pomoState.interval);
+      pomoState.interval = null;
       pomoState.running = false;
       document.getElementById('pomo-start').textContent = '繼續 ♡';
       document.getElementById('pomo-status').textContent = '已暫停';
     } else {
-      // Start / resume
+      // Start / resume - 先清掉可能殘留的過渡 timeout
+      if (pomoState.nextPhaseTimeout) {
+        clearTimeout(pomoState.nextPhaseTimeout);
+        pomoState.nextPhaseTimeout = null;
+      }
       pomoState.running = true;
       pomoState.interval = setInterval(pomoTick, 1000);
       document.getElementById('pomo-start').textContent = '暫停';
@@ -3277,9 +3460,31 @@
   });
   
   document.getElementById('pomo-reset').addEventListener('click', () => {
-    if (pomoState.interval) clearInterval(pomoState.interval);
+    clearPomoTimers();  // 修 BUG：同時清除過渡用的 setTimeout
     const activeBtn = document.querySelector('.pomo-mode.active');
     setPomoMode(activeBtn.dataset.mode, parseInt(activeBtn.dataset.min));
+  });
+  
+  // 從頭開始：清空週期（4 顆番茄重新數）→ 回到第 1 顆專注
+  // 不會清除歷史番茄統計、不會扣 XP
+  document.getElementById('pomo-restart').addEventListener('click', () => {
+    if (!confirm('確定要重新開始一輪番茄循環嗎？♡\n\n' +
+                 '✓ 週期計數歸零（回到第 1/4 顆番茄）\n' +
+                 '✓ 切回專注 25 分鐘\n' +
+                 '✗ 不會清除今日番茄統計\n' +
+                 '✗ 不會扣除 XP / 等級')) return;
+    
+    clearPomoTimers();
+    setCycleCount(0);  // 週期歸零
+    
+    // 切到專注模式 25 分
+    document.querySelectorAll('.pomo-mode').forEach(b => b.classList.remove('active'));
+    document.querySelector('.pomo-mode[data-mode="focus"]').classList.add('active');
+    setPomoMode('focus', 25);
+    
+    document.getElementById('pomo-status').textContent = '🌟 全新一輪 · 第 1/4 顆 ♡';
+    playDing();
+    renderAll();
   });
   
   // ============================================
@@ -3422,6 +3627,297 @@
   setPomoMode('focus', 25);
   renderDiary();
   renderAll();
+  
+  // ============================================
+  // FIREBASE CLOUD SYNC
+  // ============================================
+  // Strategy: Local-first. localStorage is always source of truth on device.
+  // Cloud sync is opt-in (user must log in). When logged in:
+  //   - On login: pull cloud data → MERGE with local (cloud wins on conflict)
+  //   - On any save: push to cloud (debounced)
+  //   - Real-time listener for multi-device sync
+  
+  const SYNC_KEYS = [
+    'scheduleCheckIns', 'streakData', 'taskStreaks',
+    'userXP', 'pomoData', 'pomoCycleCount', 'pomoAutoFlow',
+    'studyDiary'
+  ];
+  
+  let currentUser = null;
+  let cloudUnsubscribe = null;
+  let pushTimer = null;
+  let isApplyingCloud = false;  // prevent ping-pong loop
+  
+  // Wait for Firebase to be ready
+  function whenFirebaseReady(callback) {
+    if (window.fb) callback();
+    else window.addEventListener('firebase-ready', callback, { once: true });
+  }
+  
+  // Update sync UI based on auth state
+  function updateSyncUI(user, statusText, statusClass) {
+    const avatar = document.getElementById('sync-avatar');
+    const name = document.getElementById('sync-name');
+    const status = document.getElementById('sync-status');
+    const loginBtn = document.getElementById('sync-login-btn');
+    const logoutBtn = document.getElementById('sync-logout-btn');
+    
+    if (user) {
+      // Avatar: photo if available, else initial letter
+      if (user.photoURL) {
+        avatar.innerHTML = `<img src="${user.photoURL}" alt="">`;
+      } else {
+        avatar.innerHTML = (user.displayName || user.email || '?').charAt(0).toUpperCase();
+      }
+      name.textContent = user.displayName || user.email || '已登入';
+      status.textContent = statusText || '☁ 雲端同步中';
+      status.className = 'sync-status ' + (statusClass || 'synced');
+      loginBtn.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+    } else {
+      avatar.innerHTML = '☁';
+      name.textContent = '未登入';
+      status.textContent = '本機儲存模式';
+      status.className = 'sync-status';
+      loginBtn.style.display = 'inline-block';
+      logoutBtn.style.display = 'none';
+    }
+  }
+  
+  // Read all sync-able data from localStorage into one object
+  function gatherLocalData() {
+    const data = {};
+    SYNC_KEYS.forEach(k => {
+      const v = localStorage.getItem(k);
+      if (v !== null) data[k] = v;
+    });
+    return data;
+  }
+  
+  // Apply a data object back to localStorage
+  function applyDataToLocal(data) {
+    if (!data) return;
+    isApplyingCloud = true;
+    SYNC_KEYS.forEach(k => {
+      if (data[k] !== undefined && data[k] !== null) {
+        localStorage.setItem(k, data[k]);
+      }
+    });
+    isApplyingCloud = false;
+  }
+  
+  // Smart merge: take the "richer" value for each key
+  // - For days arrays / xp / counters: combine sets / take max
+  // - For diary: merge by timestamp
+  function mergeData(local, cloud) {
+    const merged = { ...local };
+    
+    // Helper to safely parse JSON
+    const tryParse = (s) => { try { return JSON.parse(s); } catch { return null; } };
+    
+    SYNC_KEYS.forEach(k => {
+      const lv = local[k];
+      const cv = cloud[k];
+      if (lv === undefined && cv === undefined) return;
+      if (lv === undefined) { merged[k] = cv; return; }
+      if (cv === undefined) { merged[k] = lv; return; }
+      if (lv === cv) { merged[k] = lv; return; }
+      
+      const lp = tryParse(lv);
+      const cp = tryParse(cv);
+      
+      // Numeric-string keys (XP, cycle count) → take max
+      if (k === 'userXP' || k === 'pomoCycleCount') {
+        merged[k] = String(Math.max(parseInt(lv) || 0, parseInt(cv) || 0));
+        return;
+      }
+      
+      // Auto-flow toggle: prefer the most recently saved (cloud, since user logged in)
+      if (k === 'pomoAutoFlow') {
+        merged[k] = cv;
+        return;
+      }
+      
+      // streakData: merge days arrays (union)
+      if (k === 'streakData' && lp && cp) {
+        const days = Array.from(new Set([...(lp.days || []), ...(cp.days || [])])).sort();
+        const best = Math.max(lp.best || 0, cp.best || 0);
+        merged[k] = JSON.stringify({ days, current: 0, best });
+        return;
+      }
+      
+      // taskStreaks: merge each task's days
+      if (k === 'taskStreaks' && lp && cp) {
+        const tasks = ['checkin', 'pomo', 'diary'];
+        const result = {};
+        tasks.forEach(t => {
+          const ld = (lp[t] && lp[t].days) || [];
+          const cd = (cp[t] && cp[t].days) || [];
+          result[t] = { days: Array.from(new Set([...ld, ...cd])).sort() };
+        });
+        merged[k] = JSON.stringify(result);
+        return;
+      }
+      
+      // scheduleCheckIns / pomoData: merge by week / day key
+      if ((k === 'scheduleCheckIns' || k === 'pomoData') && lp && cp) {
+        const result = { ...lp };
+        Object.keys(cp).forEach(weekKey => {
+          if (typeof cp[weekKey] === 'object' && typeof result[weekKey] === 'object') {
+            // merge inner objects (any true wins for checkins, sum for pomos? No, take max)
+            const inner = { ...result[weekKey] };
+            Object.keys(cp[weekKey]).forEach(innerK => {
+              if (typeof cp[weekKey][innerK] === 'number') {
+                inner[innerK] = Math.max(inner[innerK] || 0, cp[weekKey][innerK]);
+              } else {
+                inner[innerK] = inner[innerK] || cp[weekKey][innerK];
+              }
+            });
+            result[weekKey] = inner;
+          } else {
+            result[weekKey] = result[weekKey] !== undefined ? result[weekKey] : cp[weekKey];
+          }
+        });
+        merged[k] = JSON.stringify(result);
+        return;
+      }
+      
+      // studyDiary: merge by timestamp (deduped)
+      if (k === 'studyDiary' && Array.isArray(lp) && Array.isArray(cp)) {
+        const seen = new Set();
+        const all = [...lp, ...cp].filter(e => {
+          const id = e.timestamp || (e.date + '|' + e.text);
+          if (seen.has(id)) return false;
+          seen.add(id);
+          return true;
+        }).sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+        merged[k] = JSON.stringify(all.slice(-100));
+        return;
+      }
+      
+      // Default: cloud wins
+      merged[k] = cv;
+    });
+    
+    return merged;
+  }
+  
+  // Push current local data to cloud (debounced)
+  function pushToCloud() {
+    if (!currentUser || isApplyingCloud) return;
+    clearTimeout(pushTimer);
+    pushTimer = setTimeout(async () => {
+      if (!currentUser) return;
+      try {
+        updateSyncUI(currentUser, '☁ 同步中...', 'syncing');
+        const data = gatherLocalData();
+        const ref = window.fb.doc(window.fb.db, 'users', currentUser.uid);
+        await window.fb.setDoc(ref, {
+          data: data,
+          updatedAt: Date.now(),
+        }, { merge: true });
+        updateSyncUI(currentUser, '☁ 已同步 ✓', 'synced');
+      } catch (err) {
+        console.error('Push error:', err);
+        updateSyncUI(currentUser, '⚠ 同步失敗', '');
+      }
+    }, 800);
+  }
+  
+  // Hook localStorage.setItem to auto-push when data changes
+  const _origSetItem = localStorage.setItem.bind(localStorage);
+  localStorage.setItem = function(key, value) {
+    _origSetItem(key, value);
+    if (SYNC_KEYS.includes(key)) {
+      pushToCloud();
+    }
+  };
+  
+  // Pull from cloud and merge into local
+  async function pullAndMerge() {
+    if (!currentUser) return;
+    try {
+      updateSyncUI(currentUser, '☁ 讀取中...', 'syncing');
+      const ref = window.fb.doc(window.fb.db, 'users', currentUser.uid);
+      const snap = await window.fb.getDoc(ref);
+      
+      const local = gatherLocalData();
+      if (snap.exists() && snap.data().data) {
+        const cloud = snap.data().data;
+        const merged = mergeData(local, cloud);
+        applyDataToLocal(merged);
+        // Push merged result back
+        await window.fb.setDoc(ref, { data: merged, updatedAt: Date.now() }, { merge: true });
+      } else {
+        // First time login: push local up
+        await window.fb.setDoc(ref, { data: local, updatedAt: Date.now() }, { merge: true });
+      }
+      
+      // Re-render UI
+      renderAll();
+      renderDiary();
+      const dayToShow = viewingDay !== null ? viewingDay : new Date().getDay();
+      renderScheduleList(dayToShow, getCurrentInfo());
+      
+      updateSyncUI(currentUser, '☁ 已同步 ✓', 'synced');
+      
+      // Subscribe to real-time changes
+      if (cloudUnsubscribe) cloudUnsubscribe();
+      cloudUnsubscribe = window.fb.onSnapshot(ref, (snap) => {
+        if (!snap.exists()) return;
+        const data = snap.data().data;
+        if (!data) return;
+        // Only apply if remote update is newer (cheap check: just re-apply)
+        applyDataToLocal(data);
+        renderAll();
+        renderDiary();
+        const dayToShow = viewingDay !== null ? viewingDay : new Date().getDay();
+        renderScheduleList(dayToShow, getCurrentInfo());
+      });
+    } catch (err) {
+      console.error('Pull error:', err);
+      updateSyncUI(currentUser, '⚠ 讀取失敗', '');
+    }
+  }
+  
+  // ============ AUTH HANDLERS ============
+  whenFirebaseReady(() => {
+    // Login button
+    document.getElementById('sync-login-btn').addEventListener('click', async () => {
+      try {
+        await window.fb.signInWithPopup(window.fb.auth, window.fb.provider);
+        // onAuthStateChanged will handle the rest
+      } catch (err) {
+        if (err.code === 'auth/popup-closed-by-user' || 
+            err.code === 'auth/cancelled-popup-request') return;
+        console.error('Login error:', err);
+        alert('登入失敗：' + (err.message || err.code));
+      }
+    });
+    
+    // Logout button
+    document.getElementById('sync-logout-btn').addEventListener('click', async () => {
+      if (!confirm('確定要登出嗎？♡\n\n資料會留在雲端，下次登入還能讀回來。\n本機的資料不會被刪除。')) return;
+      try {
+        if (cloudUnsubscribe) { cloudUnsubscribe(); cloudUnsubscribe = null; }
+        await window.fb.signOut(window.fb.auth);
+      } catch (err) {
+        console.error('Logout error:', err);
+      }
+    });
+    
+    // Listen to auth state
+    window.fb.onAuthStateChanged(window.fb.auth, async (user) => {
+      currentUser = user;
+      if (user) {
+        updateSyncUI(user, '☁ 連線中...', 'syncing');
+        await pullAndMerge();
+      } else {
+        if (cloudUnsubscribe) { cloudUnsubscribe(); cloudUnsubscribe = null; }
+        updateSyncUI(null);
+      }
+    });
+  });
   
   initDecorations();
   renderDayTabs();
