@@ -1964,7 +1964,7 @@
       <img src="kitty.png" alt="Kitty">
     </div>
     
-    <h1>我的時刻表<span class="flourish">
+    <h1>我的時刻表<span class="flourish"></span>
     <div class="subtitle">~ Mon Petit Calendrier ~</div>
     
     <div class="clock-display">
@@ -3755,24 +3755,38 @@
   }
   
   // Pull cloud data → REPLACE local entirely. Used after login.
-  async function pullFromCloud() {
+  // Smart logic: if cloud is empty (first time login on this account),
+  // upload local data to cloud instead of wiping it.
+  async function pullFromCloud(localBackup) {
     if (!currentUser) return;
     try {
       updateSyncUI(currentUser, '☁ 讀取中...', 'syncing');
       const ref = window.fb.doc(window.fb.db, 'users', currentUser.uid);
       const snap = await window.fb.getDoc(ref);
       
-      if (snap.exists() && snap.data().data) {
-        // Cloud has data → use it
+      const cloudHasData = snap.exists() && 
+                          snap.data().data && 
+                          Object.keys(snap.data().data).length > 0;
+      
+      if (cloudHasData) {
+        // Cloud has data → use it (overwrites local)
         applyDataToLocal(snap.data().data);
+        updateSyncUI(currentUser, '☁ 已同步 ✓', 'synced');
       } else {
-        // First time logging in EVER on this account → start fresh in cloud
-        // (local was already wiped before this function ran)
-        await window.fb.setDoc(ref, { data: {}, updatedAt: Date.now() });
+        // Cloud is empty → this is a first-time login on this account
+        // Restore the local backup to localStorage and push it up
+        if (localBackup && Object.keys(localBackup).length > 0) {
+          applyDataToLocal(localBackup);
+          await window.fb.setDoc(ref, { data: localBackup, updatedAt: Date.now() });
+          updateSyncUI(currentUser, '☁ 首次同步完成 ✓', 'synced');
+        } else {
+          // No local backup either → truly fresh start
+          await window.fb.setDoc(ref, { data: {}, updatedAt: Date.now() });
+          updateSyncUI(currentUser, '☁ 已同步 ✓', 'synced');
+        }
       }
       
       rerenderAfterDataChange();
-      updateSyncUI(currentUser, '☁ 已同步 ✓', 'synced');
       
       // Subscribe to real-time changes (multi-device sync)
       if (cloudUnsubscribe) cloudUnsubscribe();
@@ -3791,29 +3805,30 @@
   
   // ============ AUTH HANDLERS ============
   whenFirebaseReady(() => {
-    // LOGIN: warns if local data exists, then wipes local + pulls cloud
+    // LOGIN: backs up local first; will restore if cloud is empty (first time)
     document.getElementById('sync-login-btn').addEventListener('click', async () => {
-      // Check if there is meaningful local data first
       const local = gatherLocalData();
       const hasLocalData = Object.keys(local).length > 0;
       
       if (hasLocalData) {
         const ok = confirm(
-          '⚠️ 登入提醒\n\n' +
-          '登入後將切換為「雲端模式」：\n' +
-          '✓ 從雲端讀取你的紀錄\n' +
-          '✗ 此瀏覽器目前的本機紀錄會被清空\n\n' +
-          '若這是你第一次登入此帳號，雲端會是空的，' +
-          '本機紀錄將不會自動上傳（保險起見）。\n\n' +
-          '確定要登入嗎？♡'
+          '☁ 登入提醒\n\n' +
+          '智能同步邏輯：\n' +
+          '✓ 若雲端有資料 → 從雲端讀取（覆蓋本機）\n' +
+          '✓ 若雲端是空的（首次登入此帳號）→ 將本機資料上傳到雲端，不會丟失\n\n' +
+          '你目前的本機紀錄都會被保護好 ♡\n\n' +
+          '確定登入嗎？'
         );
         if (!ok) return;
       }
       
+      // Save local backup BEFORE login (in case onAuthStateChanged wipes it)
+      window._pendingLocalBackup = hasLocalData ? local : null;
+      
       try {
         await window.fb.signInWithPopup(window.fb.auth, window.fb.provider);
-        // onAuthStateChanged below handles the actual data swap
       } catch (err) {
+        window._pendingLocalBackup = null;
         if (err.code === 'auth/popup-closed-by-user' || 
             err.code === 'auth/cancelled-popup-request') return;
         console.error('Login error:', err);
@@ -3836,28 +3851,28 @@
         if (cloudUnsubscribe) { cloudUnsubscribe(); cloudUnsubscribe = null; }
         clearTimeout(pushTimer);
         await window.fb.signOut(window.fb.auth);
-        // onAuthStateChanged → user=null → wipe local
       } catch (err) {
         console.error('Logout error:', err);
       }
     });
     
-    // AUTH STATE LISTENER: this is where the bucket-swap happens
+    // AUTH STATE LISTENER
     window.fb.onAuthStateChanged(window.fb.auth, async (user) => {
       const wasLoggedIn = !!currentUser;
       currentUser = user;
       
       if (user) {
-        // → Just logged in
+        // Just logged in: pull cloud, but pass local backup so we can restore if cloud is empty
         updateSyncUI(user, '☁ 連線中...', 'syncing');
-        wipeLocalSyncData();        // Clear local first
-        rerenderAfterDataChange();  // Show cleared state briefly
-        await pullFromCloud();      // Then load cloud (or empty if first time)
+        const localBackup = window._pendingLocalBackup || gatherLocalData();
+        window._pendingLocalBackup = null;
+        wipeLocalSyncData();
+        rerenderAfterDataChange();
+        await pullFromCloud(localBackup);
       } else {
-        // → Just logged out (or initial pageload while not logged in)
+        // Logged out (or initial pageload while not logged in)
         if (cloudUnsubscribe) { cloudUnsubscribe(); cloudUnsubscribe = null; }
         if (wasLoggedIn) {
-          // Real logout (not initial load) → wipe local
           wipeLocalSyncData();
           rerenderAfterDataChange();
         }
